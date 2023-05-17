@@ -1,5 +1,5 @@
 ---
-permalink: /about/
+permalink: /
 title: Minseok Kong
 toc: true
 toc_sticky: true
