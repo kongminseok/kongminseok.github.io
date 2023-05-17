@@ -1,1 +1,2 @@
-# Minseok Kong's Homepage
+# Minseok Kong's Page
+https://kongminseok.github.io/
