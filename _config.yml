@@ -16,11 +16,11 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "ko"
-title                    : "Minseok Kong's Homepage"
+title                    : "Minseok Kong's Page"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Minseok Kong"
-description              : "Why so serious"
+description              : 
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -110,6 +110,7 @@ author:
   location         : "Seoul, South Korea"
   email            : "ksjaizen@protonmail.com"
   links:
+
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       #url: "ksjaizen@gmail.com"
@@ -122,6 +123,10 @@ author:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
+    
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/kongminseok/"
     - label: "Github"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/kongminseok"
