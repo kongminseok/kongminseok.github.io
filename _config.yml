@@ -15,7 +15,7 @@
 minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "ko"
+locale                   : "en"
 title                    : "Minseok Kong's Page"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
@@ -292,15 +292,14 @@ defaults:
       layout: single
       author_profile: true
   
-  
   # _posts
-  #- scope:
-  #    path: ""
-  #    type: posts 
-  #  values:
-  #    layout: single
-  #    author_profile: true
-  #    read_time: true
-  #    comments: # true
-  #    share: true
-  #    related: true
+  - scope:
+      path: ""
+      type: posts 
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: # true
+      share: true
+      related: true
