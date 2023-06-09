@@ -124,15 +124,16 @@ author:
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
     
-    - label: "Linkedin"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/kongminseok/"
+    
     - label: "Github"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/kongminseok"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/kongminnseok"
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/kongminseok/"
 
 # Site Footer
 footer:
