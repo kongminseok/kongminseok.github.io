@@ -16,7 +16,7 @@ toc_label: MYSELF
   }
 </style>
 
-<span style="font-size:100%">I am a graduate student in the Graduate School of Computer Science and Engineering M.S. program at [SGU](https://sogang.ac.kr/). I am a member of the [Intelligent Connected Systems Lab](https://icslsogang.github.io/), advised by Prof. Jungmin So. <br><br> Previously, I researched on automated stock trading combined with DRL. My current reseach interests lie in deep learning and computer vision. I've researched the representation learning and object recognition. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
+<span style="font-size:100%">I am a graduate student in the Graduate School of Computer Science and Engineering M.S. program at [SGU](https://sogang.ac.kr/). I am a member of the [Intelligent Connected Systems Lab](https://icslsogang.github.io/), advised by Prof. Jungmin So. <br><br> Previously, I researched automated stock trading combined with DRL. My current research interests lie in deep learning and computer vision. I've researched representation learning and semantic segmentation. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
 
 
 ## Education
