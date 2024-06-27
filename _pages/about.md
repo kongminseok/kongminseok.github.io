@@ -34,7 +34,7 @@ toc_label: MYSELF
   <tr>
     <td style="padding: 10px;">
       <span style="font-size:100%"> <a href="https://www.engineering.utoronto.ca/">University of Toronto (UofT)</a> </span>
-      <span style="font-size:70%"> <br> <i>Full-Time exchange M.S. Student in the Faculty of Applied Science and Engineering</i> <br> - IITP Applied AI Program </span>
+      <span style="font-size:70%"> <br> <i>M.S. Student in the Faculty of Applied Science and Engineering</i> <br> - IITP Applied AI Program </span>
     </td>
     <td style="padding: 10px;">
       <span style="font-size:70%"> Toronto, Canada <br> <i>Jan 2024 - Jun 2024</i> </span>
