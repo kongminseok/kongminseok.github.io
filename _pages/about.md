@@ -54,7 +54,17 @@ toc_label: MYSELF
 
 ## Publications
 
-| <image align="left" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/EAASTUDRL.png"> | <span style="font-size:100%"> [**Empirical Analysis of Automated Stock Trading Using Deep Reinforcement Learning**](https://www.mdpi.com/2076-3417/13/1/633) </span> <br> <span style="font-size:70%"> _**Minseok Kong** and Jungmin So_ <br> MDPI Applied Sciences, 2023 </span> |
+<table>
+  <tr>
+    <td style="padding: 10px;">
+      <img align="left" style="border-radius: 7px; width: 100%; height: 100%;" src="/assets/images/EAASTUDRL.png">
+    </td>
+    <td style="padding: 10px;">
+      <span style="font-size:100%;"> <a href="https://www.mdpi.com/2076-3417/13/1/633"><b>Empirical Analysis of Automated Stock Trading Using Deep Reinforcement Learning</b></a> </span> <br>
+      <span style="font-size:70%;"><i><b>Minseok Kong</b> and Jungmin So</i> <br> MDPI Applied Sciences, 2023 </span>
+    </td>
+  </tr>
+</table>
 
 ## Projects
 
@@ -78,8 +88,3 @@ toc_label: MYSELF
     </td>
   </tr>
 </table>
-
-
-## Certificates
-
-|<span style="font-size:100%"><a href="/assets/pdf/commento.pdf">IITP Applied AI Program at UofT</a></span> | <span style="font-size:70%">_Jan 2024 - Jun 2024_ </span>
