@@ -23,7 +23,7 @@ toc_label: MYSELF
 
 <style>
   .custom-table {
-    border-spacing: 20px; /* 원하는 간격으로 조정 */
+    border-spacing: 40px; /* 원하는 간격으로 조정 */
   }
 </style>
 
