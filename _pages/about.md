@@ -32,9 +32,26 @@ toc_label: MYSELF
 
 ## Projects
 
-| <span style="font-size:100%"> **Efficient Human Detection Leveraging YOLOv8 Nano on ROS: A Comparative Study of RGB-D and RGB Cameras** </span> <br> <span style="font-size:70%"> _January 2024 – June 2024_ </span>  | <span style="font-size:70%">  Implementation and optimization of two ROS packages for efficient human detection using RGB and RGB-D cameras, including a comparative analysis of their setups for depth estimation and object detection, and model optimization for low CPU usage through conversion and quantization techniques.|
-
-| <span style="font-size:100%"> **Real-time Motorcycle Tracking Leveraging YOLOv7 on Jetson Nano** </span> <br> <span style="font-size:70%"> _September 2022 – December 2022_ </span>  | <span style="font-size:70%"> By leveraging YOLOv7 to an embedded system (NVIDIA Jetson Nano), tracking motorcycles on the road in real-time.|
+<table>
+  <tr>
+    <td style="padding: 10px;">
+      <span style="font-size:100%;">**Efficient Human Detection Leveraging YOLOv8 Nano on ROS: A Comparative Study of RGB-D and RGB Cameras**</span> <br>
+      <span style="font-size:70%;"><i>January 2024 – June 2024</i></span>
+    </td>
+    <td style="padding: 10px;">
+      <span style="font-size:70%;">Implementation and optimization of two ROS packages for efficient human detection using RGB and RGB-D cameras, including a comparative analysis of their setups for depth estimation and object detection, and model optimization for low CPU usage through conversion and quantization techniques.</span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">
+      <span style="font-size:100%;">**Real-time Motorcycle Tracking Leveraging YOLOv7 on Jetson Nano**</span> <br>
+      <span style="font-size:70%;"><i>September 2022 – December 2022</i></span>
+    </td>
+    <td style="padding: 10px;">
+      <span style="font-size:70%;">By leveraging YOLOv7 to an embedded system (NVIDIA Jetson Nano), tracking motorcycles on the road in real-time.</span>
+    </td>
+  </tr>
+</table>
 
 
 ## Certificates
