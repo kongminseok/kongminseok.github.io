@@ -21,9 +21,35 @@ toc_label: MYSELF
 
 ## Education
 
-|<span style="font-size:100%"> [Sogang University (SGU)](https://sogang.ac.kr/) </span> <span style="font-size:70%"> <br> _M.S. Student in Computer Science and Engineering_ <br> - Advised by Prof. Jungmin So. </span> | <span style="font-size:70%">  Seoul, South Korea <br> _Feb 2022 - Aug 2024_ </span> |
-|<span style="font-size:100%"> [University of Toronto (UofT)](https://www.engineering.utoronto.ca/) </span> <span style="font-size:70%"> <br> _Full-Time exchange M.S. Student in the Faculty of Applied Science and Engineering_ <br> - IITP Applied AI Program </span> | <span style="font-size:70%"> Toronto, Canada <br> _Jan 2024 - Jun 2024_ </span> |
-|<span style="font-size:100%"> [Sogang University (SGU)](https://sogang.ac.kr/) </span> <span style="font-size:70%"> <br> _B.S. Student in Economics and Bigdata Science_ </span> | <span style="font-size:70%"> Seoul, South Korea <br> _Feb 2014 - Feb 2022_ </span> |
+<table>
+  <tr>
+    <td style="padding: 10px;">
+      <span style="font-size:100%"> [Sogang University (SGU)](https://sogang.ac.kr/) </span>
+      <span style="font-size:70%"> <br> <i>M.S. Student in Computer Science and Engineering</i> <br> - Advised by Prof. Jungmin So. </span>
+    </td>
+    <td style="padding: 10px;">
+      <span style="font-size:70%"> Seoul, South Korea <br> <i>Feb 2022 - Aug 2024</i> </span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">
+      <span style="font-size:100%"> [University of Toronto (UofT)](https://www.engineering.utoronto.ca/) </span>
+      <span style="font-size:70%"> <br> <i>Full-Time exchange M.S. Student in the Faculty of Applied Science and Engineering</i> <br> - IITP Applied AI Program </span>
+    </td>
+    <td style="padding: 10px;">
+      <span style="font-size:70%"> Toronto, Canada <br> <i>Jan 2024 - Jun 2024</i> </span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">
+      <span style="font-size:100%"> [Sogang University (SGU)](https://sogang.ac.kr/) </span>
+      <span style="font-size:70%"> <br> <i>B.S. Student in Economics and Bigdata Science</i> </span>
+    </td>
+    <td style="padding: 10px;">
+      <span style="font-size:70%"> Seoul, South Korea <br> <i>Feb 2014 - Feb 2022</i> </span>
+    </td>
+  </tr>
+</table>
 
 
 ## Publications
@@ -35,7 +61,7 @@ toc_label: MYSELF
 <table>
   <tr>
     <td style="padding: 10px;">
-      <span style="font-size:100%;">**Efficient Human Detection Leveraging YOLOv8 Nano on ROS: A Comparative Study of RGB-D and RGB Cameras**</span> <br>
+      <span style="font-size:100%; font-weight: bold;">Efficient Human Detection Leveraging YOLOv8 Nano on ROS: A Comparative Study of RGB-D and RGB Cameras</span> <br>
       <span style="font-size:70%;"><i>January 2024 – June 2024</i></span>
     </td>
     <td style="padding: 10px;">
@@ -44,7 +70,7 @@ toc_label: MYSELF
   </tr>
   <tr>
     <td style="padding: 10px;">
-      <span style="font-size:100%;">**Real-time Motorcycle Tracking Leveraging YOLOv7 on Jetson Nano**</span> <br>
+      <span style="font-size:100%; font-weight: bold;">Real-time Motorcycle Tracking Leveraging YOLOv7 on Jetson Nano</span> <br>
       <span style="font-size:70%;"><i>September 2022 – December 2022</i></span>
     </td>
     <td style="padding: 10px;">
