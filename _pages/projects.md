@@ -1,3 +1,5 @@
+<!--
+
 ---
 permalink: /projects/
 title: Projects
@@ -20,3 +22,4 @@ title: Projects
 | <a href="/assets/pdf/kb.pdf"><image align="left" img style="border-radius: 7px;" width="1280" height="720" src="/assets/images/kb.png"> | <span style="font-size:100%"> **[KB 증권 디지털 Idea Market 공모전](https://github.com/kongminseok/2022-kbSecurities-DIM)** </span> <br> <span style="font-size:80%"> _Jan, 2022 - Mar, 2022_ <br><br> 네이버 증권 뉴스 기사 데이터 분석을 통한 AI 주식 종목 등락 예측 서비스 개발 </span> |
 | <a href="/assets/pdf/commento.pdf"><image align="left" img style="border-radius: 7px;" width="1280" height="720" src="/assets/images/commento.png"> | <span style="font-size:100%"> **[Commento](https://comento.kr/?index) X [Insight](https://www.instagram.com/insight_sg/) 산학협력 프로젝트** </span> <br> <span style="font-size:80%"> _Mar, 2021 - Jun, 2021_ <br><br> 잠재 고객 데이터 분석을 통한 서비스 이용률 제고 방안 및 WTP 추정  </span> |
 
+-->
