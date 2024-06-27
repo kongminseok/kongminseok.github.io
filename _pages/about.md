@@ -32,4 +32,4 @@ toc_label: MYSELF
 
 ## Certificates
 
-IITP Applied AI Program at UofT
+|<span style="font-size:80%"> Jan 2024 - Jun 2024 </span> | <span style="font-size:90%"> IITP Applied AI Program at UofT </span> |
