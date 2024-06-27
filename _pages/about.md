@@ -21,8 +21,8 @@ toc_label: MYSELF
 
 ## Education
 
-|<span style="font-size:80%"> Feb 2022 - Aug 2024 </span> | <span style="font-size:90%"> [Sogang University (SGU)](https://sogang.ac.kr/), Seoul, South Korea <br> M.S. Student in Computer Science and Engineering </span> |
-|<span style="font-size:80%"> Jan 2024 - Jun 2024 </span> | <span style="font-size:90%"> [University of Toronto (UofT)](https://sogang.ac.kr/), Toronto, Canada <br> M.S. Student in Computer Science and Engineering <br> Advisor: Prof.Jungmin So. </span> |
+|<span style="font-size:80%"> Feb 2022 - Aug 2024 </span> | <span style="font-size:90%"> [Sogang University (SGU)](https://sogang.ac.kr/), Seoul, South Korea <br> M.S. Student in Computer Science and Engineering <br> Advisor: Prof.Jungmin So. </span> |
+|<span style="font-size:80%"> Jan 2024 - Jun 2024 </span> | <span style="font-size:90%"> [University of Toronto (UofT)](https://sogang.ac.kr/), Toronto, Canada <br> M.S. Student in Faculty of Applied Science and Engineering <br> IITP Applied AI Program </span> |
 |<span style="font-size:80%"> Feb 2014 - Feb 2022 </span> | <span style="font-size:90%"> [Sogang University (SGU)](https://sogang.ac.kr/), Seoul, South Korea <br> B.S. Student in Economics and Bigdata Science </span> |
 
 
