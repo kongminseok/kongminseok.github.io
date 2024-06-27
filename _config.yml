@@ -106,9 +106,9 @@ analytics:
 author:
   name             : "Minseok Kong"
   avatar           : "/assets/images/bond_forger.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "AI researcher & Data scientist (Promotion)"
+  bio              : "Data Scientist"
   location         : "Seoul, South Korea"
-  email            : "ksjaizen@protonmail.com"
+  email            : "ksjscott@naver.com"
   links:
 
     - label: "Email"
@@ -130,7 +130,7 @@ author:
       url: "https://github.com/kongminseok"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/iammiinseok"
+      url: "https://instagram.com/minseokzero"
     - label: "Linkedin"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/minseokkong/"
