@@ -16,7 +16,7 @@ toc_label: MYSELF
   }
 </style>
 
-<span style="font-size:100%"> Previously, I researched automated stock trading combined with DRL. My current research interests lie in deep learning and computer vision. I've researched unsupervised learning and semantic segmentation. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
+<span style="font-size:100%"> My current research interests lie in deep learning and computer vision. I've researched unsupervised learning and semantic segmentation. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
 
 
 ## Education
