@@ -21,8 +21,8 @@ toc_label: MYSELF
 
 ## Education
 
-|<span style="font-size:90%"> [Sogang University (SGU)](https://sogang.ac.kr/) </span> <span style="font-size:80%"> <br> M.S. Student in Computer Science and Engineering <br> - Advised by Prof. Jungmin So. </span> | <span style="font-size:80%">  Seoul, South Korea <br> _Feb 2022 - Aug 2024_ </span> |
-|<span style="font-size:90%"> [University of Toronto (UofT)](https://www.engineering.utoronto.ca/) <br> Full-Time exchange M.S. Student in the Faculty of Applied Science and Engineering <br> - IITP Applied AI Program </span> | <span style="font-size:80%"> Toronto, Canada <br> _Jan 2024 - Jun 2024_ </span> |
+|<span style="font-size:90%"> [Sogang University (SGU)](https://sogang.ac.kr/) </span> <span style="font-size:80%"> <br> _M.S. Student in Computer Science and Engineering_ <br> - Advised by Prof. Jungmin So. </span> | <span style="font-size:80%">  Seoul, South Korea <br> _Feb 2022 - Aug 2024_ </span> |
+|<span style="font-size:90%"> [University of Toronto (UofT)](https://www.engineering.utoronto.ca/) <br> _Full-Time exchange M.S. Student in the Faculty of Applied Science and Engineering_ <br> - IITP Applied AI Program </span> | <span style="font-size:80%"> Toronto, Canada <br> _Jan 2024 - Jun 2024_ </span> |
 |<span style="font-size:90%"> [Sogang University (SGU)](https://sogang.ac.kr/) <br> B.S. Student in Economics and Bigdata Science </span> | <span style="font-size:80%"> Seoul, South Korea <br> _Feb 2014 - Feb 2022_ </span> |
 
 
