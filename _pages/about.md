@@ -16,12 +16,12 @@ toc_label: MYSELF
   }
 </style>
 
-<span style="font-size:100%">I am a graduate student in the Graduate School of Computer Science and Engineering M.S. program at [SGU](https://sogang.ac.kr/). I am a member of the [Intelligent Connected Systems Lab](https://icslsogang.github.io/), advised by Prof. Jungmin So. <br><br> Previously, I researched automated stock trading combined with DRL. My current research interests lie in deep learning and computer vision. I've researched representation learning and semantic segmentation. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
+<span style="font-size:100%"> Previously, I researched automated stock trading combined with DRL. My current research interests lie in deep learning and computer vision. I've researched unsupervised learning and semantic segmentation. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
 
 
 ## Education
 
-|<span style="font-size:80%"> Feb 2022 - Aug 2024 </span> | <span style="font-size:90%"> [Sogang University (SGU)](https://sogang.ac.kr/), Seoul, South Korea <br> M.S. Student in Computer Science and Engineering <br> Advisor: Prof.Jungmin So. </span> |
+|<span style="font-size:80%"> Feb 2022 - Aug 2024 </span> | <span style="font-size:90%"> [Sogang University (SGU)](https://sogang.ac.kr/), Seoul, South Korea <br> M.S. Student in Computer Science and Engineering <br> Advisor: Prof. Jungmin So. </span> |
 |<span style="font-size:80%"> Jan 2024 - Jun 2024 </span> | <span style="font-size:90%"> [University of Toronto (UofT)](https://sogang.ac.kr/), Toronto, Canada <br> M.S. Student in Faculty of Applied Science and Engineering <br> IITP Applied AI Program </span> |
 |<span style="font-size:80%"> Feb 2014 - Feb 2022 </span> | <span style="font-size:90%"> [Sogang University (SGU)](https://sogang.ac.kr/), Seoul, South Korea <br> B.S. Student in Economics and Bigdata Science </span> |
 
