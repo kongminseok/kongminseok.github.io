@@ -36,6 +36,7 @@ toc_label: MYSELF
 
 | <image align="left" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/EAASTUDRL.png"> | <span style="font-size:100%"> **Real-time Motorcycle Tracking Leveraging YOLOv7 on Jetson Nano** </span> <br> <span style="font-size:80%"> Minseok Kong and Jungmin So <br> _September 2022 – December 2022_ </span> |
 
+
 ## Certificates
 
 | <span style="font-size:80%">Jan 2024 - Jun 2024</span> | <span style="font-size:90%"><a href="/assets/pdf/commento.pdf">IITP Applied AI Program at UofT</a></span> |
