@@ -27,8 +27,8 @@ toc_label: MYSELF
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Sogang University (SGU)</a> </span>
       <span style="font-size:70%;"> <br> <i>M.S. in Computer Science and Engineering</i> <br> - Advised by Prof. Jungmin So. </span>
     </td>
-    <td style="padding: 40px;">
-      <span style="font-size:70%; text-align: right;"> Seoul, South Korea <br> <i>Feb 2022 - Aug 2024</i> </span>
+    <td style="padding: 40px; text-align: right;">
+      <span style="font-size:70%;"> Seoul, South Korea <br> <i>Feb 2022 - Aug 2024</i> </span>
     </td>
   </tr>
   <tr>
@@ -36,8 +36,8 @@ toc_label: MYSELF
       <span style="font-size:100%;"> <a href="https://www.engineering.utoronto.ca/">University of Toronto (UofT)</a> </span>
       <span style="font-size:70%;"> <br> <i>M.S. in the Faculty of Applied Science and Engineering</i> <br> - IITP Applied AI Program </span>
     </td>
-    <td style="padding: 40px;">
-      <span style="font-size:70%; text-align: right;"> Toronto, Canada <br> <i>Jan 2024 - Jun 2024</i> </span>
+    <td style="padding: 40px; text-align: right;">
+      <span style="font-size:70%;"> Toronto, Canada <br> <i>Jan 2024 - Jun 2024</i> </span>
     </td>
   </tr>
   <tr>
@@ -45,8 +45,8 @@ toc_label: MYSELF
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Sogang University (SGU)</a> </span>
       <span style="font-size:70%;"> <br> <i>B.S. in Economics and Bigdata Science</i> </span>
     </td>
-    <td style="padding: 40px;">
-      <span style="font-size:70%; text-align: right;"> Seoul, South Korea <br> <i>Feb 2014 - Feb 2022</i> </span>
+    <td style="padding: 40px; text-align: right;">
+      <span style="font-size:70%;"> Seoul, South Korea <br> <i>Feb 2014 - Feb 2022</i> </span>
     </td>
   </tr>
 </table>
