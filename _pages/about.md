@@ -16,7 +16,7 @@ toc_label: MYSELF
   }
 </style>
 
-<span style="font-size:100%"> My research interests lie in generative AI. </span> | <image align="right" img style="border-radius: 7px;" width="70%" height="70%" src="/assets/images/minseok.JPG"> 
+<span style="font-size:100%"> My research interests encompass generative AI, particularly delving into the intricacies of communication protocols within multi-agent large language model systems. </span> | <image align="right" img style="border-radius: 7px;" width="70%" height="70%" src="/assets/images/minseok.JPG"> 
 
 
 ## Education
