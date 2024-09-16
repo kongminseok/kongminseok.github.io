@@ -16,7 +16,7 @@ toc_label: MYSELF
   }
 </style>
 
-<span style="font-size:100%"> My current research interests lie in deep learning and computer vision. I've researched unsupervised learning and semantic segmentation. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
+<span style="font-size:100%"> My research interests lie in generative AI. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
 
 
 ## Education
@@ -71,7 +71,7 @@ toc_label: MYSELF
 <table>
   <tr>
     <td style="padding: 10px;">
-      <span style="font-size:100%; font-weight: bold;">Efficient Human Detection Leveraging YOLOv8 Nano on ROS: A Comparative Study of RGB-D and RGB Cameras</span> <br>
+      <span style="font-size:100%; font-weight: bold;">Simulating Mobile Robot Vision: An Analysis of RGB-D versus RGB-Based Distance Accuracy and CPU Optimization</span> <br>
       <span style="font-size:70%;"><i>January 2024 – June 2024</i></span>
     </td>
     <td style="padding: 10px;">
