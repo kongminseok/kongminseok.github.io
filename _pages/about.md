@@ -16,7 +16,7 @@ toc_label: MYSELF
   }
 </style>
 
-<span style="font-size:100%"> My research interests encompass generative AI, particularly delving into the intricacies of communication protocols within multi-agent large language model systems. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
+<span style="font-size:100%"> My research interests encompass generative AI, particularly delving into the intricacies of communication protocols within multi-agent multi modal systems. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
 
 
 ## Education
@@ -85,6 +85,15 @@ toc_label: MYSELF
     </td>
     <td style="padding: 10px;">
       <span style="font-size:70%;">By leveraging YOLOv7 to an embedded system (NVIDIA Jetson Nano), tracking motorcycles on the road in real-time.</span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px;">
+      <span style="font-size:100%; font-weight: bold;">ContextAug: </span> <br>
+      <span style="font-size:70%;"><i>September 2022 – December 2022</i></span>
+    </td>
+    <td style="padding: 10px;">
+      <span style="font-size:70%;">Implementation and optimization of two ROS packages for efficient human detection using RGB and RGB-D cameras, including a comparative analysis of their setups for depth estimation and object detection, and model optimization for low CPU usage through conversion and quantization techniques.</span>
     </td>
   </tr>
 </table>
