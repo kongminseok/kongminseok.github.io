@@ -16,7 +16,7 @@ toc_label: MYSELF
   }
 </style>
 
-<span style="font-size:100%"> My research interests encompass generative AI, particularly delving into the intricacies of communication protocols within multi-agent multi modal systems. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
+<span style="font-size:100%"> My current research interests encompass generative AI, particularly delving into the intricacies of communication protocols within multi-agent multi modal systems. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
 
 
 ## Education
@@ -89,11 +89,11 @@ toc_label: MYSELF
   </tr>
   <tr>
     <td style="padding: 10px;">
-      <span style="font-size:100%; font-weight: bold;">ContextAug: </span> <br>
+      <span style="font-size:100%; font-weight: bold;">ContextAug: Combat Contextual-bias augmentation method for Multi-Label Classification </span> <br>
       <span style="font-size:70%;"><i>September 2022 – December 2022</i></span>
     </td>
     <td style="padding: 10px;">
-      <span style="font-size:70%;">Implementation and optimization of two ROS packages for efficient human detection using RGB and RGB-D cameras, including a comparative analysis of their setups for depth estimation and object detection, and model optimization for low CPU usage through conversion and quantization techniques.</span>
+      <span style="font-size:70%;">Implementation and deployment of ContextAug, an innovative data augmentation methodology designed to mitigate visual biases among co-occurring objects, including its integration into vision models to reduce contextual bias and enhance multi-label classification performance, as well as the introduction of a novel approach through the synthesis of minimally biased data combinations.</span>
     </td>
   </tr>
 </table>
