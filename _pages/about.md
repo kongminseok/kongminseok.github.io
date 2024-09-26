@@ -93,7 +93,7 @@ toc_label: MYSELF
       <span style="font-size:70%;"><i>September 2022 – December 2022</i></span>
     </td>
     <td style="padding: 10px;">
-      <span style="font-size:70%;">ContextAug is an innovative data augmentation methodology to mitigate visual biases in co-occurring objects. It integrates into vision models to reduce contextual bias and partially improve multi-label classification performance.</span>
+      <span style="font-size:70%;">The proposal of ContextAug, a data augmentation methodology aimed at mitigating visual biases among co-occurring objects, integration into vision models to reduce contextual bias and enhance multi-label classification performance to some extent.</span>
     </td>
   </tr>
 </table>
