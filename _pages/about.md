@@ -16,7 +16,7 @@ toc_label: MYSELF
   }
 </style>
 
-<span style="font-size:100%"> My current research interests encompass generative AI, particularly delving into the intricacies of communication protocols within multi-agent systems. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
+<span style="font-size:100%"> My current research interests encompass generative AI, particularly delving into multi-agent systems. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.JPG"> 
 
 
 ## Education
