@@ -19,6 +19,24 @@ toc_label: MYSELF
 <span style="font-size:100%"> My current research interests encompass generative AI, particularly delving into multi-agent systems. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.jpg"> 
 
 
+## Career
+
+
+
+
+## Certification
+
+<table>
+  <tr>
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
+      <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Big Data Analytics Engineer</a> </span>
+    </td>
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 100px; padding-right: 10px; text-align: right;">
+      <span style="font-size:70%;"> <i>Dec 2024</i> </span>
+    </td>
+  </tr>
+
+
 ## Education
 
 <table>
