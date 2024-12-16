@@ -32,6 +32,9 @@ toc_label: MYSELF
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Big Data Analytics Engineer</a> </span>
       <span style="font-size:70%;"> <br> <i>December 2024</i> </span>
     </td>
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 100px; padding-right: 10px; text-align: right;">
+      <span style="font-size:70%;"> <i>December 2024</i> </span>
+    </td>
   </tr>
 </table>
 
@@ -50,7 +53,7 @@ toc_label: MYSELF
     </td>
   </tr>
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
       <span style="font-size:100%;"> <a href="https://www.engineering.utoronto.ca/">University of Toronto (UofT)</a> </span>
       <span style="font-size:70%;"> <br> <i>M.S. in the Faculty of Applied Science and Engineering</i> <br> - <a href="/assets/images/uoft.png">IITP Applied AI Program</a> </span>
     </td>
@@ -59,7 +62,7 @@ toc_label: MYSELF
     </td>
   </tr>
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Sogang University (SGU)</a> </span>
       <span style="font-size:70%;"> <br> <i>B.S. in Economics and Bigdata Science</i> </span>
     </td>
