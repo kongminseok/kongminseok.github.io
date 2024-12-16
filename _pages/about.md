@@ -30,11 +30,10 @@ toc_label: MYSELF
   <tr>
     <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Big Data Analytics Engineer</a> </span>
-    </td>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 100px; padding-right: 10px; text-align: right;">
-      <span style="font-size:70%;"> <i>Dec 2024</i> </span>
+      <span style="font-size:70%;"> <br> <i>December 2024</i> <br> - Korea Data Agency </span>
     </td>
   </tr>
+</table>
 
 
 ## Education
