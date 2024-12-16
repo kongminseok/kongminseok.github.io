@@ -36,11 +36,12 @@ toc_label: MYSELF
 </table>
 
 
+
 ## Education
 
 <table>
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Sogang University (SGU)</a> </span>
       <span style="font-size:70%;"> <br> <i>M.S. in Computer Science and Engineering</i> <br> - Advised by Prof. Jungmin So. </span>
     </td>
@@ -67,6 +68,7 @@ toc_label: MYSELF
     </td>
   </tr>
 </table>
+
 
 
 ## Projects
@@ -100,6 +102,7 @@ toc_label: MYSELF
     </td>
   </tr>
 </table>
+
 
 
 ## Publications
