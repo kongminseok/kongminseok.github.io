@@ -28,9 +28,9 @@ toc_label: MYSELF
 
 <table>
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Big Data Analytics Engineer</a> </span>
-      <span style="font-size:70%;"> <br> <i>December 2024</i>
+      <span style="font-size:70%;"> <br> <i>December 2024</i> </span>
     </td>
   </tr>
 </table>
@@ -41,7 +41,7 @@ toc_label: MYSELF
 
 <table>
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Sogang University (SGU)</a> </span>
       <span style="font-size:70%;"> <br> <i>M.S. in Computer Science and Engineering</i> <br> - Advised by Prof. Jungmin So. </span>
     </td>
