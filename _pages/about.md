@@ -28,9 +28,9 @@ toc_label: MYSELF
 
 <table>
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Big Data Analytics Engineer</a> </span>
-      <span style="font-size:70%;"> <br> <i>December 2024</i> <br> - Korea Data Agency </span>
+      <span style="font-size:70%;"> <br> <i>December 2024</i>
     </td>
   </tr>
 </table>
@@ -40,7 +40,7 @@ toc_label: MYSELF
 
 <table>
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Sogang University (SGU)</a> </span>
       <span style="font-size:70%;"> <br> <i>M.S. in Computer Science and Engineering</i> <br> - Advised by Prof. Jungmin So. </span>
     </td>
@@ -68,20 +68,6 @@ toc_label: MYSELF
   </tr>
 </table>
 
-
-## Publications
-
-<table>
-  <tr>
-    <td style="padding: 10px;">
-      <img align="left" style="border-radius: 7px; width: 100%; height: 100%;" src="/assets/images/EAASTUDRL.png">
-    </td>
-    <td style="padding: 10px;">
-      <span style="font-size:100%;"> <a href="https://www.mdpi.com/2076-3417/13/1/633"><b>Empirical Analysis of Automated Stock Trading Using Deep Reinforcement Learning</b></a> </span> <br>
-      <span style="font-size:70%;"><i><b>Minseok Kong</b> and Jungmin So</i> <br> MDPI Applied Sciences, 2023 </span>
-    </td>
-  </tr>
-</table>
 
 ## Projects
 
@@ -111,6 +97,21 @@ toc_label: MYSELF
     </td>
     <td style="padding: 10px;">
       <span style="font-size:70%;">The proposal of ContextAug, a data augmentation methodology aimed at mitigating visual biases among co-occurring objects, integration into vision models to reduce contextual bias and enhance multi-label classification performance to some extent.</span>
+    </td>
+  </tr>
+</table>
+
+
+## Publications
+
+<table>
+  <tr>
+    <td style="padding: 10px;">
+      <img align="left" style="border-radius: 7px; width: 100%; height: 100%;" src="/assets/images/EAASTUDRL.png">
+    </td>
+    <td style="padding: 10px;">
+      <span style="font-size:100%;"> <a href="https://www.mdpi.com/2076-3417/13/1/633"><b>Empirical Analysis of Automated Stock Trading Using Deep Reinforcement Learning</b></a> </span> <br>
+      <span style="font-size:70%;"><i><b>Minseok Kong</b> and Jungmin So</i> <br> MDPI Applied Sciences, 2023 </span>
     </td>
   </tr>
 </table>
