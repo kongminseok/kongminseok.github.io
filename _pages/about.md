@@ -28,7 +28,7 @@ toc_label: MYSELF
 
 <table>
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px;">
       <span style="font-size:100%;"> <a href="https://sogang.ac.kr/">Big Data Analytics Engineer</a> </span>
       <span style="font-size:70%;"> <br> <i>December 2024</i>
     </td>
