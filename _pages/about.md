@@ -29,7 +29,7 @@ toc_label: MYSELF
 <table>
   <tr>
     <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
-      <span style="font-size:100%;"> <a href="/assets/bda">Big Data Analytics Engineer</a> </span>
+      <span style="font-size:100%;"> Big Data Analytics Engineer </span>
     </td>
     <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 200px; padding-right: 10px; text-align: right;">
       <span style="font-size:70%;"> <i>December 2024</i> </span>
