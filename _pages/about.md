@@ -129,4 +129,13 @@ toc_label: MYSELF
       <span style="font-size:70%;"><i><b>Minseok Kong</b> and Jungmin So</i> <br> MDPI Applied Sciences, 2023 </span>
     </td>
   </tr>
+  <tr>
+    <td style="padding: 10px;">
+      <img align="left" style="border-radius: 7px; width: 100%; height: 100%;" src="/assets/images/EAASTUDRL.png">
+    </td>
+    <td style="padding: 10px;">
+      <span style="font-size:100%;"> <a href="https://www.mdpi.com/2076-3417/13/1/633"><b>Simulating Mobile Robot Vision: An Analysis of RGB-D versus RGB-Based Distance Accuracy and CPU Optimization</b></a> </span> <br>
+      <span style="font-size:70%;"><i><b>Minseok Kong</b> and Jungmin So</i> <br> MDPI Applied Sciences, 2023 </span>
+    </td>
+  </tr>
 </table>
