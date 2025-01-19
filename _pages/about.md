@@ -105,7 +105,7 @@ toc_label: MYSELF
   </tr>
   <tr>
     <td style="padding: 10px;">
-      <img align="left" style="border-radius: 7px; width: 100%; height: 100%;" src="/assets/images/1.png">
+      <img align="left" style="border-radius: 7px; width: 100%; height: 100%;" src="/assets/images/SMRV.png">
     </td>
     <td style="padding: 10px;">
       <span style="font-size:100%;"> <a href="https://www.mdpi.com/2076-3417/13/1/633"><b>Simulating Mobile Robot Vision: An Analysis of RGB-D versus RGB-Based Distance Accuracy and CPU Optimization</b></a> </span> <br>
