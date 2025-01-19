@@ -86,6 +86,8 @@ toc_label: MYSELF
 ## Projects
 
 <table>
+  
+  <!--
   <tr>
     <td style="padding: 10px;">
       <span style="font-size:100%; font-weight: bold;">Simulating Mobile Robot Vision: An Analysis of RGB-D versus RGB-Based Distance Accuracy and CPU Optimization</span> <br>
@@ -95,6 +97,8 @@ toc_label: MYSELF
       <span style="font-size:70%;">Implementation and optimization of two ROS packages for efficient human detection using RGB and RGB-D cameras, including a comparative analysis of their setups for depth estimation and object detection, and model optimization for low CPU usage through conversion and quantization techniques.</span>
     </td>
   </tr>
+  -->
+  
   <tr>
     <td style="padding: 10px;">
       <span style="font-size:100%; font-weight: bold;">Real-time Motorcycle Tracking Leveraging YOLOv7 on Jetson Nano</span> <br>
