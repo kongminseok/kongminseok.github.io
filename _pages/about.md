@@ -19,36 +19,6 @@ toc_label: MYSELF
 <span style="font-size:100%"> My current research interests encompass generative AI, particularly delving into multi-agent systems. </span> | <image align="right" img style="border-radius: 7px;" width="100%" height="100%" src="/assets/images/minseok.jpg"> 
 
 
-## Career
-
-<table style="width: 100%; border-spacing: 0 10px;">
-  <tr>
-    <td style="padding: 5px 10px 5px 10px; font-weight: bold; width: 80%;">
-      <span style="font-size:100%;"> SK C&C </span>
-    </td>
-    <td style="padding: 5px 10px; text-align: right; width: 20%;">
-      <span style="font-size:70%;"> <i>Jan 2025 - present</i> </span>
-    </td>
-  </tr>
-</table>
-
-
-
-## Certification
-
-<table style="width: 100%; border-spacing: 0 10px;">
-  <tr>
-    <td style="padding: 5px 10px 5px 10px; font-weight: bold; width: 80%;">
-      <span style="font-size:100%;"> Big Data Analytics Engineer </span>
-    </td>
-    <td style="padding: 5px 10px; text-align: right; width: 20%;">
-      <span style="font-size:70%;"> <i>December 2024</i> </span>
-    </td>
-  </tr>
-</table>
-
-
-
 ## Education
 
 <table>
@@ -135,7 +105,7 @@ toc_label: MYSELF
   </tr>
   <tr>
     <td style="padding: 10px;">
-      <img align="left" style="border-radius: 7px; width: 100%; height: 100%;" src="/assets/images/EAASTUDRL.png">
+      <img align="left" style="border-radius: 7px; width: 100%; height: 100%;" src="/assets/images/1.png">
     </td>
     <td style="padding: 10px;">
       <span style="font-size:100%;"> <a href="https://www.mdpi.com/2076-3417/13/1/633"><b>Simulating Mobile Robot Vision: An Analysis of RGB-D versus RGB-Based Distance Accuracy and CPU Optimization</b></a> </span> <br>
