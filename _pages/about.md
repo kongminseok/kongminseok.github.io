@@ -21,12 +21,12 @@ toc_label: MYSELF
 
 ## Career
 
-<table style="width: 100%;">
+<table style="width: 100%; border-spacing: 0 10px;">
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; font-weight: bold; width: 80%;">
+    <td style="padding: 5px 10px 5px 10px; font-weight: bold; width: 80%;">
       <span style="font-size:100%;"> SK C&C </span>
     </td>
-    <td style="padding-top: 5px; padding-bottom: 5px; text-align: right; width: 20%;">
+    <td style="padding: 5px 10px; text-align: right; width: 20%;">
       <span style="font-size:70%;"> <i>Jan 2025 - present</i> </span>
     </td>
   </tr>
@@ -36,12 +36,12 @@ toc_label: MYSELF
 
 ## Certification
 
-<table style="width: 100%;">
+<table style="width: 100%; border-spacing: 0 10px;">
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; font-weight: bold; width: 80%;">
+    <td style="padding: 5px 10px 5px 10px; font-weight: bold; width: 80%;">
       <span style="font-size:100%;"> Big Data Analytics Engineer </span>
     </td>
-    <td style="padding-top: 5px; padding-bottom: 5px; text-align: right; width: 20%;">
+    <td style="padding: 5px 10px; text-align: right; width: 20%;">
       <span style="font-size:70%;"> <i>December 2024</i> </span>
     </td>
   </tr>
