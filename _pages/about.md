@@ -21,12 +21,12 @@ toc_label: MYSELF
 
 ## Career
 
-<table>
+<table style="width: 100%;">
   <tr>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 100px; font-weight: bold;">
+    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 10px; font-weight: bold; width: 80%;">
       <span style="font-size:100%;"> SK C&C </span>
     </td>
-    <td style="padding-top: 5px; padding-bottom: 5px; padding-left: 100px; padding-right: 10px; text-align: right;">
+    <td style="padding-top: 5px; padding-bottom: 5px; text-align: right; width: 20%;">
       <span style="font-size:70%;"> <i>Jan 2025 - present</i> </span>
     </td>
   </tr>
