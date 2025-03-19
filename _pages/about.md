@@ -99,7 +99,7 @@ toc_label: MYSELF
       <img align="left" style="border-radius: 7px; width: 100%; height: 100%;" src="/assets/images/SMRV.png">
     </td>
     <td style="padding: 10px;">
-      <span style="font-size:100%;"> <a href="https://www.mdpi.com/2076-3417/13/1/633"><b>Simulating Mobile Robot Vision: An Analysis of RGB-D versus RGB-Based Distance Accuracy and CPU Optimization</b></a> </span> <br>
+      <span style="font-size:100%;"> <a href="https://ieeexplore.ieee.org/document/10920652"><b>Simulating Mobile Robot Vision: An Analysis of RGB-D versus RGB-Based Distance Accuracy and CPU Optimization</b></a> </span> <br>
       <span style="font-size:70%;"><i><b>Minseok Kong</b>, Jiho Park, Daye Lee, Nikolaos Kourtzanidis and Jungmin So</i> <br> ICAIIC, 2025 </span>
     </td>
   </tr>
