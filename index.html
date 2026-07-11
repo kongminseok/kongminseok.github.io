@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>공민석 — AI Application Engineer</title>
+<meta name="description" content="모델은 힘이고, 결정은 방향이다 — AI Application Engineer 공민석. 세 AI 서비스의 아키텍처와 결정의 기록." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="공민석 — AI Application Engineer" />
+<meta property="og:description" content="모델은 힘이고, 결정은 방향이다 — 세 AI 서비스의 아키텍처와 결정의 기록." />
+<meta property="og:url" content="https://kongminseok.github.io/" />
+<meta property="og:image" content="https://kongminseok.github.io/assets/minseok.jpg" />
+<meta name="twitter:card" content="summary" />
+<meta name="theme-color" content="#fbfbfa" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="canonical" href="https://kongminseok.github.io/" />
+<script>
+(function(){try{
+  var qs = new URLSearchParams(location.search);
+  /* language — default ko; ?lang= wins, then the visitor's saved choice */
+  var q = qs.get('lang');
+  var l = (q === 'en' || q === 'ko') ? q : localStorage.getItem('lang');
+  if(l !== 'en' && l !== 'ko') l = 'ko';
+  document.documentElement.setAttribute('data-lang', l);
+  document.documentElement.lang = l;
+  /* theme — default light; ?theme= is test-only (never persisted), then saved choice */
+  var tq = qs.get('theme');
+  var t = (tq === 'light' || tq === 'dark') ? tq : localStorage.getItem('theme');
+  if(t !== 'light' && t !== 'dark') t = 'light';
+  document.documentElement.setAttribute('data-theme', t);
+  /* nofx — test hook: disables reveal & orbit animation for screenshots/PDF */
+  if(qs.get('nofx')) document.documentElement.setAttribute('data-nofx','');
+}catch(e){}})();
+</script>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600&display=swap" rel="stylesheet" />
+<style>
+/* ═══ tokens ═══ */
+:root{
+  --bg:#fbfbfa; --panel:#ffffff; --panel-2:#f6f5f2;
+  --border:#e7e5e2; --border-2:#d8d5d0;
+  --ink:#14171d; --body:#3d434f; --sub:#5f6570; --meta:#6b7184;
+  --acc1:#7360ea; --acc1-text:#5b48d6; --acc1-soft:rgba(115,96,234,.07); --acc1-soft2:rgba(115,96,234,.13);
+  --acc2:#1fa396; --acc2-text:#137a70; --acc2-soft:rgba(31,163,150,.08);
+  --grad:linear-gradient(90deg,#7360ea,#1fa396);
+  --wash-a:rgba(115,96,234,.09); --wash-b:rgba(31,163,150,.07);
+  --o1:rgba(20,23,29,.10); --o2:rgba(20,23,29,.15);
+  --chip-bg:#5b48d6; --chip-fg:#ffffff;
+  --shadow:0 12px 40px rgba(20,23,29,.07);
+  --nav-bg:rgba(251,251,250,.86); --sel:rgba(115,96,234,.18);
+  --f-body:"Pretendard",-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --f-disp:Georgia,"Noto Serif KR","Times New Roman",serif;
+  --f-label:"Pretendard","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --r-lg:18px; --r-md:12px; --r-sm:8px;
+}
+:root[data-theme="dark"]{
+  --bg:#0d1016; --panel:#12161e; --panel-2:#171c26;
+  --border:#262d38; --border-2:#3d444d;
+  --ink:#f3f4f6; --body:#c6cbd4; --sub:#a9b0bc; --meta:#8a919f;
+  --acc1:#8d7cf6; --acc1-text:#8d7cf6; --acc1-soft:rgba(141,124,246,.12); --acc1-soft2:rgba(141,124,246,.20);
+  --acc2:#3ecfc4; --acc2-text:#3ecfc4; --acc2-soft:rgba(62,207,196,.10);
+  --grad:linear-gradient(90deg,#8d7cf6,#3ecfc4);
+  --wash-a:rgba(141,124,246,.16); --wash-b:rgba(62,207,196,.10);
+  --o1:rgba(255,255,255,.11); --o2:rgba(255,255,255,.16);
+  --chip-bg:#8d7cf6; --chip-fg:#0d1016;
+  --shadow:0 14px 44px rgba(0,0,0,.45);
+  --nav-bg:rgba(13,16,22,.82); --sel:rgba(141,124,246,.28);
+}
+/* ═══ base ═══ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--body);font-family:var(--f-body);
+  font-size:15px;letter-spacing:-.005em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  transition:opacity .18s ease,background .25s ease}
+body.langfade{opacity:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc1);outline-offset:3px;border-radius:2px}
+::selection{background:var(--sel)}
+img{max-width:100%}
+section[id]{scroll-margin-top:76px}
+.overline{font-family:var(--f-label);font-size:11.5px;font-weight:700;letter-spacing:.3em;color:var(--meta)}
+
+/* ═══ language switching ═══ */
+html[data-lang="en"] .ko{display:none !important}
+html[data-lang="ko"] .en{display:none !important}
+
+/* ═══ progress + nav ═══ */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:70;pointer-events:none}
+.progress i{display:block;height:100%;background:var(--grad);transform:scaleX(0);transform-origin:0 50%}
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:16px;
+  height:56px;padding:0 clamp(16px,4vw,36px);
+  background:var(--nav-bg);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border)}
+.brand{font-family:var(--f-disp);font-size:16.5px;font-weight:600;letter-spacing:-.01em;
+  color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand i{font-style:normal;color:var(--acc1)}
+.nav nav{margin-left:auto;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.nav nav::-webkit-scrollbar{display:none}
+.nav nav a{font-family:var(--f-label);font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  color:var(--meta);text-decoration:none;padding:9px 10px 10px;white-space:nowrap;transition:color .15s}
+.nav nav a:hover{color:var(--acc1-text)}
+.nav nav a.on{color:var(--acc1-text);
+  background:var(--grad) left bottom/100% 2px no-repeat}
+.langsw{flex:none;display:flex;border:1px solid var(--border-2);border-radius:999px;overflow:hidden}
+.langsw button{appearance:none;border:0;background:transparent;cursor:pointer;
+  font-family:var(--f-label);font-size:10px;font-weight:700;letter-spacing:.1em;
+  color:var(--meta);padding:7px 11px;transition:color .15s,background .15s}
+.langsw button:hover{color:var(--acc1-text)}
+.langsw button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+#themesw{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--border-2);
+  background:transparent;color:var(--sub);cursor:pointer;display:grid;place-items:center;
+  transition:color .15s,border-color .15s}
+#themesw:hover{color:var(--acc1-text);border-color:var(--acc1)}
+#themesw svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#themesw .ic-sun{display:none}
+[data-theme="dark"] #themesw .ic-sun{display:block}
+[data-theme="dark"] #themesw .ic-moon{display:none}
+
+/* ═══ hero ═══ */
+.cover{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;padding:130px clamp(20px,5vw,48px) 72px}
+.cover::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(56% 72% at 78% 6%,var(--wash-a),transparent 70%),
+             radial-gradient(52% 66% at 8% 100%,var(--wash-b),transparent 70%)}
+.cv-in{position:relative;width:100%;max-width:1120px;margin:0 auto;
+  display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:56px;align-items:center}
+.cv-decl{font-family:var(--f-disp);font-size:clamp(31px,4.6vw,52px);font-weight:600;line-height:1.34;
+  letter-spacing:-.015em;color:var(--ink);margin-top:22px}
+.cv-decl em{font-style:normal;color:var(--acc1)}
+html[data-lang="en"] .cv-decl{font-size:clamp(29px,4vw,45px)}
+.cv-rule{width:46px;height:3px;border-radius:1.5px;background:var(--grad);margin-top:26px}
+.cv-sub{margin-top:24px;font-size:clamp(15px,1.6vw,16.5px);color:var(--sub);line-height:1.8;max-width:560px}
+.cv-name{margin-top:28px;font-size:18px;font-weight:800;color:var(--ink)}
+.cv-name .subline{display:block;font-family:var(--f-label);font-size:10.5px;font-weight:600;
+  color:var(--meta);margin-top:8px;letter-spacing:.14em}
+.orbitbox{position:relative;width:100%;aspect-ratio:1;max-width:380px;margin:0 auto}
+.orbit{position:absolute;inset:0;width:100%;height:100%}
+.orbit .o1{stroke:var(--o1);fill:none;stroke-width:1}
+.orbit .o2{stroke:var(--o2);fill:none;stroke-width:1}
+.orbit .comet{fill:none;stroke:url(#og);stroke-width:2;stroke-linecap:round;stroke-dasharray:140 891;opacity:.85}
+.orbit .dot1{fill:var(--acc1)}
+.orbit .dot2{fill:var(--acc2);opacity:.9}
+.orbit .star{opacity:.4}
+.orbit .star.s1{fill:var(--acc1)} .orbit .star.s2{fill:var(--acc2)}
+.spin,.spin2{transform-box:view-box}
+.spin{transform-origin:180px 180px;animation:orbit 60s linear infinite}
+.spin2{transform-origin:188px 172px;animation:orbitrev 90s linear infinite}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes orbitrev{to{transform:rotate(-360deg)}}
+.photo{position:absolute;inset:0;display:grid;place-items:center}
+.photo img{width:148px;height:184px;object-fit:cover;border-radius:var(--r-md);
+  border:1px solid var(--border);box-shadow:var(--shadow);display:block}
+.cv-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.cv-actions a{font-family:var(--f-label);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-align:center;
+  text-decoration:none;padding:12px 8px;border-radius:999px;transition:filter .15s,border-color .15s,color .15s}
+.cv-actions a.pri{background:var(--ink);color:var(--bg)}
+.cv-actions a.pri:hover{filter:brightness(1.12)}
+.cv-actions a.gho{border:1px solid var(--border-2);color:var(--sub)}
+.cv-actions a.gho:hover{border-color:var(--acc1);color:var(--acc1-text)}
+.cv-contents{position:relative;max-width:1120px;margin:64px auto 0;width:100%}
+.ih{font-family:var(--f-label);font-size:11px;font-weight:700;letter-spacing:.24em;color:var(--meta);margin-bottom:8px}
+a.cv-row{text-decoration:none;display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:14px 8px 14px 4px;border-bottom:1px solid var(--border);
+  transition:background .18s,border-color .18s,padding .18s}
+a.cv-row:hover{background:var(--acc1-soft);border-bottom-color:var(--acc1);padding-left:12px}
+.cv-row .l{font-size:15px;font-weight:600;color:var(--ink);min-width:0}
+.cv-row .l i{font-style:normal;font-family:var(--f-disp);font-size:14px;color:var(--acc1-text);
+  margin-right:14px;letter-spacing:.04em}
+.cv-row .r{font-size:14px;color:var(--meta);white-space:nowrap;transition:color .18s,transform .18s}
+a.cv-row:hover .r{color:var(--acc1-text);transform:translateX(3px)}
+@media (max-width:960px){
+  .cover{display:block;padding-top:120px}
+  .cv-in{grid-template-columns:1fr;gap:44px}
+  .orbitbox{max-width:320px}
+}
+@media (max-width:480px){
+  .orbit{display:none}
+  .orbitbox{aspect-ratio:auto;padding:8px 0}
+  .photo{position:static}
+}
+
+/* ═══ panels (sections) ═══ */
+main{padding:48px clamp(14px,3vw,32px) 8px}
+.sheet{position:relative;max-width:1120px;margin:0 auto 44px;
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--r-lg);
+  box-shadow:var(--shadow);padding:60px clamp(20px,4.5vw,60px) 56px}
+
+/* section header */
+.dwgno{font-family:var(--f-label);font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--acc1-text)}
+h2.dwgtitle{font-family:var(--f-disp);font-size:clamp(25px,3.4vw,33px);font-weight:600;
+  letter-spacing:-.01em;line-height:1.28;color:var(--ink);margin:14px 0 0;text-wrap:balance}
+h2.dwgtitle::after{content:"";display:block;width:46px;height:3px;border-radius:1.5px;background:var(--grad);margin-top:18px}
+.dwgsub{font-size:16px;color:var(--sub);line-height:1.75;max-width:780px;margin-top:18px}
+.dwgsub b{color:var(--ink);font-weight:700}
+.scope{margin-top:18px;font-family:var(--f-label);font-size:11px;font-weight:700;letter-spacing:.14em;
+  color:var(--meta);display:inline-block;line-height:1.7}
+.scope::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--acc1);margin-right:9px;vertical-align:1.5px}
+.scope b{color:var(--acc2-text);font-weight:700}
+
+/* ═══ principles ═══ */
+.std{display:flex;gap:28px;padding:28px 4px;border-top:1px solid var(--border);margin-top:0}
+.std:first-of-type{margin-top:30px}
+.std .sno{flex:none;width:84px;display:flex;flex-direction:column;gap:7px;padding-top:2px}
+.std .sno .n{font-family:var(--f-disp);font-size:27px;font-weight:600;color:var(--acc1-text)}
+.std .sno .t{font-family:var(--f-label);font-size:9px;font-weight:700;letter-spacing:.16em;color:var(--meta)}
+.std .sbody{min-width:0}
+.std h3{font-family:var(--f-disp);font-size:19.5px;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin-bottom:10px}
+.std p{font-size:15px;color:var(--sub);line-height:1.76}
+.std p b{color:var(--ink);font-weight:700}
+.std .ev{margin-top:12px;font-family:var(--f-label);font-size:11px;font-weight:600;letter-spacing:.05em;
+  color:var(--meta);line-height:1.8}
+.std .ev b{color:var(--acc2-text);font-weight:700}
+@media (max-width:640px){
+  .std{flex-direction:column;gap:10px}
+  .std .sno{width:100%;flex-direction:row;align-items:baseline;gap:12px}
+  .std .sno .n{font-size:20px}
+}
+
+/* ═══ diagrams ═══ */
+.svgwrap{margin:26px 0 12px;border:1px solid var(--border);background:var(--panel-2);
+  border-radius:var(--r-md);padding:18px 16px}
+.svgwrap .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.svgwrap svg{display:block;width:100%;min-width:760px;height:auto}
+svg.dg text{font-family:var(--f-label)}
+.dg .s-ink{stroke:var(--ink);opacity:.82}
+.dg .t-ink{fill:var(--ink)}
+.dg .s-a{stroke:var(--acc1)}
+.dg .t-a{fill:var(--acc1-text)}
+.dg .s-b{stroke:var(--acc2)}
+.dg .t-b{fill:var(--acc2-text)}
+.dg .f-a{fill:var(--acc1-soft)}
+.dg .f-a2{fill:var(--acc1-soft2)}
+.dg .t-mut{fill:var(--sub)}
+.dg .t-fnt{fill:var(--meta)}
+.swipehint{display:none;font-family:var(--f-label);font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--meta);margin-top:8px}
+@media (max-width:820px){.swipehint{display:block}}
+
+/* ═══ legend / duo / chips ═══ */
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:12px 36px;margin-top:18px}
+.legend div{font-size:14px;color:var(--sub);line-height:1.66;padding-left:30px;position:relative}
+.legend div b{color:var(--ink);font-weight:700}
+.legend div i{position:absolute;left:0;top:2px;font-style:normal;font-family:var(--f-label);
+  font-size:10.5px;font-weight:700;color:var(--chip-fg);background:var(--chip-bg);
+  width:19px;height:19px;border-radius:50%;display:grid;place-items:center}
+@media (max-width:760px){.legend{grid-template-columns:1fr}}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+@media (max-width:760px){.duo{grid-template-columns:1fr}}
+.mini{border:1px solid var(--border);background:var(--panel-2);border-radius:var(--r-md);padding:18px 22px}
+.mini h4{font-family:var(--f-label);font-size:10.5px;font-weight:700;letter-spacing:.13em;color:var(--acc1-text);margin-bottom:9px}
+.mini p{font-size:14px;color:var(--sub);line-height:1.68}
+.mini p b{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{font-family:var(--f-label);font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--sub);
+  border:1px solid var(--border);background:var(--panel-2);border-radius:999px;padding:8px 14px}
+.chip b{color:var(--acc1-text);font-weight:700}
+
+/* ═══ decisions ═══ */
+.dec{border:1px solid var(--border);border-radius:var(--r-md);margin-top:22px;background:var(--panel);
+  overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.dec:hover{box-shadow:var(--shadow);border-color:var(--border-2)}
+.dec-h{display:flex;align-items:baseline;gap:16px;padding:16px 22px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.dec-no{font-family:var(--f-label);font-size:10.5px;font-weight:700;letter-spacing:.18em;color:var(--acc1-text);white-space:nowrap}
+.dec-q{font-family:var(--f-disp);font-size:18.5px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.dec-opts{display:grid;grid-template-columns:1fr 1fr}
+.opt{padding:18px 22px;border-right:1px dashed var(--border);min-width:0}
+.opt:last-child{border-right:none}
+.opt-tag{display:inline-block;font-family:var(--f-label);font-size:9.5px;font-weight:700;letter-spacing:.14em;
+  color:var(--meta);border:1px solid var(--border-2);border-radius:999px;padding:4px 10px;margin-bottom:10px}
+.opt b{display:block;font-size:15.5px;font-weight:800;margin-bottom:6px;color:var(--sub)}
+.opt p{font-size:13.5px;color:var(--meta);line-height:1.64}
+.opt.adopted{background:var(--acc1-soft)}
+.opt.adopted .opt-tag{color:var(--chip-fg);background:var(--chip-bg);border-color:transparent}
+.opt.adopted b{color:var(--ink)}
+.opt.adopted p{color:var(--sub)}
+.dec-cost{display:flex;gap:8px 14px;flex-wrap:wrap;align-items:baseline;border-top:1px solid var(--border);
+  padding:13px 22px;font-size:13px;color:var(--sub);line-height:1.6}
+.dec-cost .k{font-family:var(--f-label);font-size:9.5px;font-weight:700;letter-spacing:.16em;color:var(--acc2-text);white-space:nowrap}
+@media (max-width:700px){
+  .dec-opts{grid-template-columns:1fr}
+  .opt{border-right:none;border-bottom:1px dashed var(--border)}
+  .opt:last-child{border-bottom:none}
+}
+
+/* ═══ fieldnote / factstrip ═══ */
+.fieldnote{position:relative;background:var(--acc1-soft);border-radius:var(--r-sm);
+  padding:16px 20px 16px 24px;margin-top:22px;font-size:14.5px;color:var(--body);line-height:1.72;overflow:hidden}
+.fieldnote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad)}
+.fieldnote b{color:var(--ink);font-weight:700}
+.fieldnote .fn{font-family:var(--f-label);font-size:10px;font-weight:700;letter-spacing:.16em;
+  color:var(--acc1-text);display:block;margin-bottom:7px}
+.factstrip{margin-top:30px;border-top:2px solid var(--border-2);border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.factstrip div{padding:16px 16px 14px;font-family:var(--f-label);font-size:10px;font-weight:600;
+  letter-spacing:.1em;color:var(--meta);border-left:1px solid var(--border)}
+.factstrip div:first-child{border-left:none}
+.factstrip b{display:block;font-family:var(--f-disp);font-size:24px;color:var(--ink);font-weight:600;
+  letter-spacing:0;margin-bottom:6px;font-variant-numeric:tabular-nums}
+
+/* ═══ spec / publications / record ═══ */
+.spectbl{margin-top:28px;border-top:2px solid var(--border-2)}
+.specrow{display:flex;border-bottom:1px solid var(--border)}
+.specrow .sk{flex:none;width:186px;padding:19px 18px 19px 4px;font-family:var(--f-label);font-size:10.5px;
+  font-weight:700;letter-spacing:.12em;color:var(--acc1-text);line-height:1.7}
+.specrow .sv{padding:17px 4px 17px 22px;font-size:14.5px;color:var(--sub);line-height:1.78;min-width:0}
+.specrow .sv b{color:var(--ink);font-weight:700}
+@media (max-width:700px){
+  .specrow{flex-direction:column}
+  .specrow .sk{width:100%;padding:14px 4px 0}
+  .specrow .sv{padding:8px 4px 16px}
+}
+.seclbl{font-family:var(--f-label);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--meta);
+  margin-top:36px;display:flex;align-items:center;gap:14px}
+.seclbl::before{content:"";flex:none;width:18px;height:3px;border-radius:1.5px;background:var(--grad)}
+.seclbl::after{content:"";flex:1;height:1px;background:var(--border)}
+.pub2{margin-top:14px;border:1px solid var(--border);background:var(--panel);border-radius:var(--r-md);padding:18px 22px}
+.pub2 .pt{font-size:16.5px;font-weight:700;color:var(--ink);line-height:1.5}
+.pub2 .pm{font-family:var(--f-label);font-size:11px;font-weight:600;color:var(--meta);margin-top:8px;letter-spacing:.05em;line-height:1.7}
+.pub2 .pm a{color:var(--acc1-text);text-decoration:none;border-bottom:1px solid var(--acc1-soft2);font-weight:700}
+.pub2 .pm a:hover{border-bottom-color:var(--acc1)}
+.pub2 .pd{font-size:14px;color:var(--sub);margin-top:9px;line-height:1.7}
+.pub2 .pd b{color:var(--ink);font-weight:700}
+.recrow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 4px;border-bottom:1px solid var(--border)}
+.recrow .l{font-size:15px;font-weight:700;color:var(--ink);min-width:0}
+.recrow .l .d{color:var(--sub);font-weight:500;font-size:13.5px;margin-left:10px}
+.recrow .r{font-family:var(--f-label);font-size:11px;font-weight:600;color:var(--meta);letter-spacing:.08em;white-space:nowrap}
+@media (max-width:640px){.recrow{flex-direction:column;gap:3px;align-items:flex-start}.recrow .l .d{display:block;margin:2px 0 0}}
+
+/* ═══ footer ═══ */
+footer{position:relative;max-width:1120px;margin:0 auto 56px;overflow:hidden;
+  background:var(--panel);border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow);
+  padding:48px clamp(20px,4.5vw,60px)}
+footer::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background:radial-gradient(48% 84% at 86% 0%,var(--wash-a),transparent 70%),
+             radial-gradient(44% 70% at 4% 100%,var(--wash-b),transparent 70%)}
+footer::after{content:"";position:absolute;right:-70px;top:-90px;width:280px;height:280px;
+  border:1px solid var(--o2);border-radius:50%;pointer-events:none}
+.ft-in{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:36px;flex-wrap:wrap}
+.ft-motto{font-family:var(--f-disp);font-style:italic;font-size:17px;color:var(--sub)}
+.ft-links{margin-top:14px;font-family:var(--f-label);font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--meta);line-height:2.2}
+.ft-links a{color:var(--sub);text-decoration:none;border-bottom:1px solid var(--border-2)}
+.ft-links a:hover{color:var(--acc1-text);border-bottom-color:var(--acc1)}
+.ft-copy{margin-top:10px;font-family:var(--f-label);font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--meta)}
+.signbox{position:relative;border:1px solid var(--border-2);border-radius:var(--r-md);padding:16px 22px;background:var(--panel)}
+.signbox .sl{font-family:var(--f-label);font-size:9.5px;font-weight:700;color:var(--meta);letter-spacing:.18em}
+.signbox .sn{font-size:16.5px;font-weight:800;color:var(--ink);margin-top:6px}
+.signbox .sn a{font-family:var(--f-label);font-size:12px;font-weight:600;color:var(--acc1-text);text-decoration:none;margin-left:10px}
+.signbox .sn a:hover{text-decoration:underline}
+
+/* ═══ to top ═══ */
+.totop{position:fixed;right:18px;bottom:18px;z-index:55;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--border-2);background:var(--panel);color:var(--ink);
+  font-size:16px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s;box-shadow:var(--shadow)}
+.totop.show{opacity:1;pointer-events:auto}
+.totop:hover{background:var(--ink);color:var(--bg)}
+
+/* ═══ reveal ═══ */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .spin,.spin2{animation:none}
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+[data-nofx] .rv{opacity:1;transform:none;transition:none}
+[data-nofx] .spin,[data-nofx] .spin2{animation:none}
+[data-nofx]{scroll-behavior:auto}
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><i id="pbar"></i></div>
+<header class="nav">
+  <a class="brand" href="#top">Minseok Kong<i>.</i></a>
+  <nav aria-label="Index">
+    <a href="#sh02" data-sec="sh02">PRINCIPLES</a>
+    <a href="#sh03" data-sec="sh03 sh04">PROJECT 01</a>
+    <a href="#sh05" data-sec="sh05">PROJECT 02</a>
+    <a href="#sh06" data-sec="sh06">PROJECT 03</a>
+    <a href="#sh07" data-sec="sh07">TECHNICAL</a>
+    <a href="#sh08" data-sec="sh08">RECORD</a>
+  </nav>
+  <div class="langsw" role="group" aria-label="Language">
+    <button type="button" data-lang-btn="ko" aria-pressed="true">KO</button>
+    <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+  </div>
+  <button type="button" id="themesw" aria-label="테마 전환 · Toggle theme">
+    <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.6v2.3M12 19.1v2.3M2.6 12h2.3M19.1 12h2.3M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"/></svg>
+    <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.2A8.2 8.2 0 1 1 10.8 3.4a6.6 6.6 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="cover" id="top">
+  <div class="cv-in">
+    <div class="cv-left">
+      <p class="overline">AI APPLICATION ENGINEER — PORTFOLIO</p>
+      <h1 class="cv-decl ko">모델은 힘이고,<br><em>결정</em>은 방향이다.<br>AI 서비스는 그 둘로 지어진다.</h1>
+      <h1 class="cv-decl en">Models are power.<br><em>Decisions</em> are direction.<br>AI services are built from both.</h1>
+      <div class="cv-rule" aria-hidden="true"></div>
+      <p class="cv-sub ko">지난 2년, 모델의 힘에 방향을 주어 세 개의 AI 서비스를 지었다. 이 포트폴리오는 그 결정들의 기록이다 — 전부 실제 코드에서 검증된 것만 실었다.</p>
+      <p class="cv-sub en">Over the past two years I gave direction to the power of models and built three AI services. This portfolio is the record of those decisions — every claim verified against real code.</p>
+      <div class="cv-name"><span class="ko">공민석</span><span class="en">Minseok Kong</span>
+        <span class="subline"><span class="ko">MINSEOK KONG — AI APPLICATION ENGINEER · SK 주식회사 AX · 2025.01 —</span><span class="en">공민석 — AI APPLICATION ENGINEER · SK INC. AX · 2025.01 —</span></span></div>
+    </div>
+    <aside class="cv-side">
+      <div class="orbitbox">
+        <svg class="orbit" viewBox="0 0 360 360" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="og" x1="0" y1="0" x2="1" y2="1">
+              <stop class="ga" offset="0" stop-color="#7360ea"/>
+              <stop class="gb" offset="1" stop-color="#1fa396"/>
+            </linearGradient>
+          </defs>
+          <circle class="o1" cx="180" cy="180" r="164"/>
+          <circle class="o2" cx="188" cy="172" r="112"/>
+          <g class="spin">
+            <circle class="comet" cx="180" cy="180" r="164" transform="rotate(-38 180 180)"/>
+            <circle class="dot1" cx="287.8" cy="303.6" r="5" transform="rotate(-38 180 180)"/>
+          </g>
+          <g class="spin2">
+            <circle class="dot2" cx="82.8" cy="133.7" r="3.5"/>
+          </g>
+          <circle class="star s1" cx="52" cy="58" r="1.6"/>
+          <circle class="star s2" cx="315" cy="290" r="1.4"/>
+        </svg>
+        <div class="photo"><img src="assets/minseok.jpg" alt="Minseok Kong" width="148" height="184"/></div>
+      </div>
+      <div class="cv-actions">
+        <a class="pri" href="assets/portfolio.pdf" download="공민석_AI_Application_Engineer_Portfolio.pdf"><span class="ko">PDF 포트폴리오 ↓</span><span class="en">PORTFOLIO PDF ↓</span></a>
+        <a class="gho" href="mailto:ksjscott@naver.com">EMAIL</a>
+        <a class="gho" href="https://github.com/kongminseok" target="_blank" rel="noopener">GITHUB ↗</a>
+        <a class="gho" href="https://www.linkedin.com/in/minseokkong/" target="_blank" rel="noopener">LINKEDIN ↗</a>
+      </div>
+    </aside>
+  </div>
+
+  <div class="cv-contents">
+    <div class="ih"><span class="ko">차례</span><span class="en">CONTENTS</span></div>
+    <a class="cv-row" href="#sh02"><span class="l"><i>01</i><span class="ko">원칙 — 세 시스템을 관통한 네 가지 기준</span><span class="en">Principles — four standards across three systems</span></span><span class="r">→</span></a>
+    <a class="cv-row" href="#sh03"><span class="l"><i>02</i><span class="ko">프로젝트 01 · 임원 인사 의사결정 에이전트 — 아키텍처 / 결정 기록</span><span class="en">Project 01 · Executive HR decision agent — architecture / decision log</span></span><span class="r">→</span></a>
+    <a class="cv-row" href="#sh05"><span class="l"><i>03</i><span class="ko">프로젝트 02 · HR 업무 통합 어시스턴트 — 9노드 파이프라인</span><span class="en">Project 02 · Unified HR assistant — 9-node pipeline</span></span><span class="r">→</span></a>
+    <a class="cv-row" href="#sh06"><span class="l"><i>04</i><span class="ko">프로젝트 03 · IT 변경관리 자동화 — RAG→LLM 6기능</span><span class="en">Project 03 · IT change-management automation — 6 RAG→LLM functions</span></span><span class="r">→</span></a>
+    <a class="cv-row" href="#sh07"><span class="l"><i>05</i><span class="ko">기술 명세 · 출판물 · 기록</span><span class="en">Technical data · publications · record</span></span><span class="r">→</span></a>
+  </div>
+</section>
+
+<main>
+
+<!-- ═══ DESIGN STANDARDS ═══ -->
+<section class="sheet" id="sh02">
+  <div class="dwgno">PRINCIPLES</div>
+  <h2 class="dwgtitle ko">원칙 — 선언이 아니라, 코드에 박혀 있다</h2>
+  <h2 class="dwgtitle en">Principles — not declarations, embedded in code</h2>
+  <p class="dwgsub ko">세 시스템은 도메인도 구조도 다르지만, 방향을 정한 기준은 같았다. 아래 네 가지는 문서에 적어둔 다짐이 아니라 세 코드베이스 각각에서 확인되는 <b>실행되는 기준</b>이다 — 가장 깊게는 어기면 부팅이 거부되는 게이트(프로젝트 01)로 강제된다.</p>
+  <p class="dwgsub en">The three systems differ in domain and structure, but the standards that set their direction were the same. The four below are not resolutions written in a document — they are <b>standards that execute</b>, verifiable in each of the three codebases; at the deepest level a violation refuses to boot (Project 01).</p>
+
+  <div class="std">
+    <div class="sno"><span class="n">01</span><span class="t">LLM / CODE</span></div>
+    <div class="sbody">
+      <h3 class="ko">판단은 모델에게, 사실은 코드에게</h3>
+      <h3 class="en">Judgment to the model, facts to the code</h3>
+      <p class="ko">생성의 자유와 사실의 결정론을 한 시스템 안에서 갈랐다. 임원 에이전트는 <b>도구가 유일한 데이터 통로</b>라 근거 없이 답할 길이 없고, HR 파이프라인은 도구 실행 순서를 LLM이 아니라 <b>입출력 의존성 위상정렬로 계산</b>하며(실행 계층 LLM 호출 0건), 변경관리 백엔드는 LLM이 고른 사례 ID로 담당자를 <b>DB에서 조회만</b> 한다. 환각이 사실 행세를 할 통로를 세 곳 모두 구조로 막았다.</p>
+      <p class="en">Generative freedom and factual determinism are split within one system. In the executive agent, <b>tools are the only data path</b> — there is no way to answer without evidence. The HR pipeline computes tool execution order not with an LLM but by <b>topological sort over I/O dependencies</b> (zero LLM calls in the execution layer). The change-management backend takes the case ID the LLM picked and <b>only looks up</b> the assignee in the DB. In all three, every path by which hallucination could pass as fact is blocked structurally.</p>
+      <div class="ev ko">증거 — P01 도구 밖 데이터 통로 0 · P02 실행 계층 <b>LLM 호출 0</b> · P03 사번 = 조회만</div>
+      <div class="ev en">PROOF — P01 ZERO DATA PATHS OUTSIDE TOOLS · P02 EXECUTION LAYER <b>0 LLM CALLS</b> · P03 EMPLOYEE ID = LOOKUP ONLY</div>
+    </div>
+  </div>
+
+  <div class="std">
+    <div class="sno"><span class="n">02</span><span class="t">FAIL-MODE</span></div>
+    <div class="sbody">
+      <h3 class="ko">실패를 먼저 설계한다</h3>
+      <h3 class="en">Design the failure first</h3>
+      <p class="ko">모든 컴포넌트에 "죽으면 어떻게 되는가"를 먼저 정했다. 권한 게이트는 <b>fail-closed</b>(의심되면 막는다), 기억·관측은 <b>fail-soft</b>(본 기능을 절대 깨뜨리지 않는다). 같은 인젝션 검출기도 시스템이 다르면 실패 모드가 다르다 — 임원 에이전트는 <b>fail-over</b>(예비 검출로 전환), HR 파이프라인은 <b>fail-open</b>(오탐이 업무를 막지 않게). 실패 모드는 위협의 성질이 정한다 — "무조건 차단"은 설계가 아니다.</p>
+      <p class="en">Every component starts from "what happens when this dies." Permission gates are <b>fail-closed</b> (block when in doubt); memory and observability are <b>fail-soft</b> (never break the core feature). Even the same injection detector fails differently per system — the executive agent <b>fails over</b> to a fallback detector; the HR pipeline <b>fails open</b> so false positives never block work. The failure mode is set by the nature of the threat — "block everything" is not a design.</p>
+      <div class="ev ko">증거 — P01 <b>적대적 회귀 71 시나리오</b> · P02 권한 기본값 = 거부 · P03 30s SLA·부분 성공 집계</div>
+      <div class="ev en">PROOF — P01 <b>71 ADVERSARIAL REGRESSION SCENARIOS</b> · P02 PERMISSION DEFAULT = DENY · P03 30s SLA · PARTIAL-SUCCESS AGGREGATION</div>
+    </div>
+  </div>
+
+  <div class="std">
+    <div class="sno"><span class="n">03</span><span class="t">DATA-FIRST</span></div>
+    <div class="sbody">
+      <h3 class="ko">정책은 코드가 아니라 데이터에 산다</h3>
+      <h3 class="en">Policy lives in data, not code</h3>
+      <p class="ko">코드는 해석 엔진이고, 도메인 지식은 데이터다. 모델의 행동을 정하는 것 — 도구 카탈로그·라우팅 규칙·프롬프트·판정 임계 — 을 세 시스템 모두 데이터로 선언했다. 임원 에이전트는 <b>신규 도구 추가에 중앙 코드 변경 0</b>(YAML 카탈로그 30개), HR 파이프라인은 <b>테넌트별 tools.yml 한 장</b>이 도구의 실행자·권한·순서를 정하며, 변경관리 백엔드는 <b>코드 안에 프롬프트가 0줄</b>이다. 검색 결함이 정책 파일 하나로 수리된 이유다(프로젝트 01 현장 기록).</p>
+      <p class="en">Code is an interpretation engine; domain knowledge is data. Everything that determines model behavior — tool catalogs, routing rules, prompts, judgment thresholds — is declared as data in all three systems. The executive agent adds new tools with <b>zero central code changes</b> (a 30-file YAML catalog); in the HR pipeline <b>a single tools.yml per tenant</b> defines each tool's executor, permissions and order; the change-management backend has <b>zero prompt lines inside code</b>. This is why a retrieval defect was repaired with one policy file (Project 01 field note).</p>
+      <div class="ev ko">증거 — P01 운영 YAML 30 · P02 <b>TOOLS.YML 단일 카탈로그</b> · P03 인라인 프롬프트 0</div>
+      <div class="ev en">PROOF — P01 30 OPERATIONAL YAMLS · P02 <b>SINGLE TOOLS.YML CATALOG</b> · P03 ZERO INLINE PROMPTS</div>
+    </div>
+  </div>
+
+  <div class="std">
+    <div class="sno"><span class="n">04</span><span class="t">MAKE / BUY</span></div>
+    <div class="sbody">
+      <h3 class="ko">만들 것과 빌릴 것을 가른다</h3>
+      <h3 class="en">Decide what to build and what to borrow</h3>
+      <p class="ko">후보 적합도 점수처럼 <b>전사가 공유할 알고리즘은 공용 서비스에 위임</b>하고(도구 26종 중 7종 = thin-proxy), 통제가 생명인 임원 에이전트의 <b>LLM 관측은 외부 의존 0으로 직접</b> 지었다(키 부재 시 no-op). 세 시스템 공통으로 LLM·임베딩 호출은 전부 <b>단일 게이트웨이 경유 — provider SDK 직접 호출 0건</b>. 모델 교체·비용 통제·벡터공간 정합이 한 지점에서 끝난다.</p>
+      <p class="en">Algorithms the whole company should share — like candidate-fit scoring — are <b>delegated to common services</b> (7 of 26 tools are thin proxies), while for the executive agent, where control is everything, <b>LLM observability was built in-house with zero external dependencies</b> (no-op when the key is absent). Across all three systems, every LLM and embedding call passes through <b>a single gateway — zero direct provider-SDK calls</b>. Model swaps, cost control and vector-space consistency end at one point.</p>
+      <div class="ev ko">증거 — P01 <b>THIN-PROXY 7종</b>·자급 관측 엔진 · 세 시스템 SDK DIRECT CALL 0</div>
+      <div class="ev en">PROOF — P01 <b>7 THIN-PROXY TOOLS</b> · SELF-BUILT OBSERVABILITY · 0 DIRECT SDK CALLS ACROSS ALL THREE</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ P01 SYSTEM ═══ -->
+<section class="sheet" id="sh03">
+  <div class="dwgno">PROJECT 01 — ARCHITECTURE</div>
+  <h2 class="dwgtitle ko">임원 인사 의사결정 에이전트</h2>
+  <h2 class="dwgtitle en">Executive HR Decision Agent</h2>
+  <p class="dwgsub ko">전사 임원이 실제 인사 의사결정에 쓰는 시스템. 질문은 예측할 수 없고, 데이터는 민감하며, 답에는 근거가 있어야 한다. 이 세 조건이 아래 구조 전부를 결정했다.</p>
+  <p class="dwgsub en">A system executives across the company use for real HR decisions. Questions are unpredictable, the data is sensitive, and every answer needs evidence. These three conditions determined the entire structure below.</p>
+  <div><span class="scope ko">역할 — 애플리케이션 전 영역 설계·구현 · 2026.03 — 현재 운영</span><span class="scope en">ROLE — FULL APPLICATION DESIGN &amp; IMPLEMENTATION · 2026.03 — IN PRODUCTION</span></div>
+
+  <div class="svgwrap">
+    <div class="scroller">
+      <svg class="dg" viewBox="0 0 720 204" role="img" aria-label="System general arrangement — from user to answer">
+        <defs>
+          <marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path class="t-ink" d="M0,0 L7,3.5 L0,7 Z" /></marker>
+          <marker id="ahb" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path class="t-a" d="M0,0 L7,3.5 L0,7 Z" /></marker>
+        </defs>
+        <rect class="s-ink" x="8" y="34" width="56" height="34" fill="none" stroke-width="1.2"/>
+        <text class="ko t-ink" x="36" y="54" text-anchor="middle" font-size="9" font-weight="600">사용자</text>
+        <text class="en t-ink" x="36" y="54" text-anchor="middle" font-size="8" font-weight="600">USER</text>
+        <line class="s-ink" x1="64" y1="51" x2="86" y2="51" stroke-width="1.2" marker-end="url(#ah)"/>
+        <rect class="s-b" x="88" y="34" width="58" height="34" fill="none" stroke-width="1.2"/>
+        <text class="ko t-b" x="117" y="48" text-anchor="middle" font-size="8" font-weight="600">권한 게이트</text>
+        <text class="en t-b" x="117" y="48" text-anchor="middle" font-size="7" font-weight="600">PERM. GATE</text>
+        <text class="ko t-b" x="117" y="60" text-anchor="middle" font-size="7" >부적격 → 즉시 차단</text>
+        <text class="en t-b" x="117" y="60" text-anchor="middle" font-size="5.6" >ineligible → block</text>
+        <line class="s-ink" x1="146" y1="51" x2="168" y2="51" stroke-width="1.2" marker-end="url(#ah)"/>
+        <rect class="s-a f-a" x="170" y="30" width="112" height="42" stroke-width="1.4"/>
+        <text class="t-a" x="226" y="45" text-anchor="middle" font-size="8.5" font-weight="600">SKILL CLASSIFIER</text>
+        <text class="ko t-mut" x="226" y="56" text-anchor="middle" font-size="7" >분류기 LLM · 17개 과제 분류</text>
+        <text class="en t-mut" x="226" y="56" text-anchor="middle" font-size="6" >classifier LLM · 17 task types</text>
+        <text class="ko t-mut" x="226" y="66" text-anchor="middle" font-size="7" >절차·도구범위·검증조건 확정</text>
+        <text class="en t-mut" x="226" y="66" text-anchor="middle" font-size="6" >procedure · tool scope · checks</text>
+        <line class="s-ink" x1="282" y1="51" x2="304" y2="51" stroke-width="1.2" marker-end="url(#ah)"/>
+        <rect class="s-a f-a2" x="306" y="26" width="120" height="50" stroke-width="2"/>
+        <text class="t-a" x="366" y="44" text-anchor="middle" font-size="10" font-weight="600">AGENT LOOP ⟲</text>
+        <text class="ko t-a" x="366" y="56" text-anchor="middle" font-size="6.4" >매 턴 자율 function calling</text>
+        <text class="en t-a" x="366" y="56" text-anchor="middle" font-size="6" >autonomous tool calls / turn</text>
+        <text class="ko t-a" x="366" y="67" text-anchor="middle" font-size="6.4" >injection 병렬 선검사</text>
+        <text class="en t-a" x="366" y="67" text-anchor="middle" font-size="6" >parallel injection pre-check</text>
+        <line class="s-ink" x1="426" y1="51" x2="448" y2="51" stroke-width="1.2" marker-end="url(#ah)"/>
+        <rect class="s-b" x="450" y="30" width="88" height="42" fill="none" stroke-width="1.2"/>
+        <text class="t-b" x="494" y="44" text-anchor="middle" font-size="8" font-weight="600">ENFORCER</text>
+        <text class="ko t-b" x="494" y="55" text-anchor="middle" font-size="6.4" >필수 절차 검증</text>
+        <text class="en t-b" x="494" y="55" text-anchor="middle" font-size="6" >required-step check</text>
+        <text class="t-b" x="494" y="65" text-anchor="middle" font-size="6.4" >fail-closed</text>
+        <line class="s-ink" x1="538" y1="51" x2="560" y2="51" stroke-width="1.2" marker-end="url(#ah)"/>
+        <rect class="s-ink" x="562" y="34" width="76" height="34" fill="none" stroke-width="1.2"/>
+        <text class="t-ink" x="600" y="48" text-anchor="middle" font-size="8" font-weight="600">SYNTHESIS</text>
+        <text class="ko t-mut" x="600" y="60" text-anchor="middle" font-size="6.4" >루프 내 포맷 합성</text>
+        <text class="en t-mut" x="600" y="60" text-anchor="middle" font-size="6" >in-loop formatting</text>
+        <line class="s-ink" x1="638" y1="51" x2="660" y2="51" stroke-width="1.2" marker-end="url(#ah)"/>
+        <text class="ko t-ink" x="666" y="49" font-size="8" font-weight="600">답변</text>
+        <text class="en t-ink" x="662" y="49" font-size="7" font-weight="600">Answer</text>
+        <text class="ko t-fnt" x="664" y="60" font-size="6.5" >SSE 스트림</text>
+        <text class="en t-fnt" x="662" y="60" font-size="6" >SSE stream</text>
+        <line class="s-a" x1="330" y1="76" x2="330" y2="102" stroke-width="1.2" marker-end="url(#ahb)"/>
+        <line class="s-a" x1="372" y1="102" x2="372" y2="76" stroke-width="1.2" marker-end="url(#ahb)" stroke-dasharray="3 2"/>
+        <text class="ko t-b" x="382" y="92" font-size="6.4" >복귀 전 SANITIZER — 문서에 심긴 명령을 데이터 경계로 격리</text>
+        <text class="en t-b" x="382" y="92" font-size="6" >SANITIZER before return — embedded commands isolated as data</text>
+        <rect class="s-a" x="286" y="104" width="110" height="32" fill="none" stroke-width="1.2"/>
+        <text class="t-a" x="341" y="117" text-anchor="middle" font-size="8" font-weight="600">TOOLS ×26</text>
+        <text class="ko t-mut" x="341" y="128" text-anchor="middle" font-size="6.4" >유일한 실데이터 통로</text>
+        <text class="en t-mut" x="341" y="128" text-anchor="middle" font-size="6" >the only real-data path</text>
+        <line class="s-a" x1="396" y1="120" x2="414" y2="120" stroke-width="1.2" marker-end="url(#ahb)"/>
+        <rect class="s-a" x="416" y="104" width="222" height="32" fill="none" stroke-width="1.2"/>
+        <text class="ko t-a" x="527" y="117" text-anchor="middle" font-size="7.2" font-weight="600">HYBRID RAG — BM25 + 벡터 + 시맨틱 → RRF 융합</text>
+        <text class="en t-a" x="527" y="117" text-anchor="middle" font-size="7" font-weight="600">HYBRID RAG — BM25 + vector + semantic → RRF fusion</text>
+        <text class="ko t-mut" x="527" y="128" text-anchor="middle" font-size="6.2" >권한(visibility) 필터 내장 · 3072d 임베딩 단일 매니저</text>
+        <text class="en t-mut" x="527" y="128" text-anchor="middle" font-size="6" >visibility filter built-in · single 3072d embedding manager</text>
+        <rect class="s-ink" x="8" y="158" width="630" height="34" fill="none" stroke-width="1" stroke-dasharray="4 3"/>
+        <text class="ko t-fnt" x="16" y="150" font-size="6.5" letter-spacing="2">FOUNDATION — 대화 밖에서 상시 동작</text>
+        <text class="en t-fnt" x="16" y="150" font-size="6.5" letter-spacing="2">FOUNDATION — ALWAYS ON, OUTSIDE THE CONVERSATION</text>
+        <line class="s-ink" x1="165" y1="158" x2="165" y2="192" stroke-width=".6" stroke-dasharray="4 3"/>
+        <line class="s-ink" x1="322" y1="158" x2="322" y2="192" stroke-width=".6" stroke-dasharray="4 3"/>
+        <line class="s-ink" x1="480" y1="158" x2="480" y2="192" stroke-width=".6" stroke-dasharray="4 3"/>
+        <text class="ko t-ink" x="86" y="172" text-anchor="middle" font-size="7.5" font-weight="600">기억 — supersession</text>
+        <text class="en t-ink" x="86" y="172" text-anchor="middle" font-size="7" font-weight="600">MEMORY — supersession</text>
+        <text class="ko t-mut" x="86" y="184" text-anchor="middle" font-size="6.5" >모순 없는 갱신 · 이력 보존</text>
+        <text class="en t-mut" x="86" y="184" text-anchor="middle" font-size="6" >no contradictions · history kept</text>
+        <text class="ko t-ink" x="243" y="172" text-anchor="middle" font-size="7.5" font-weight="600">보안 — 8모듈 / 7 phase</text>
+        <text class="en t-ink" x="243" y="172" text-anchor="middle" font-size="7" font-weight="600">SECURITY — 8 modules / 7 phases</text>
+        <text class="ko t-mut" x="243" y="184" text-anchor="middle" font-size="6.5" >보수적 판정 우선 · 누락 시 부팅 거부(strict)</text>
+        <text class="en t-mut" x="243" y="184" text-anchor="middle" font-size="6" >conservative first · strict boot refusal</text>
+        <text class="ko t-ink" x="401" y="172" text-anchor="middle" font-size="7.5" font-weight="600">관측 — 자급 Langfuse</text>
+        <text class="en t-ink" x="401" y="172" text-anchor="middle" font-size="7" font-weight="600">OBSERVABILITY — self-built</text>
+        <text class="ko t-mut" x="401" y="184" text-anchor="middle" font-size="6.5" >키 없으면 no-op · PII 해시</text>
+        <text class="en t-mut" x="401" y="184" text-anchor="middle" font-size="6" >no-op without key · PII hashing</text>
+        <text class="ko t-ink" x="559" y="172" text-anchor="middle" font-size="7.5" font-weight="600">배치 — 후계자 추천</text>
+        <text class="en t-ink" x="559" y="172" text-anchor="middle" font-size="7" font-weight="600">BATCH — successor recs</text>
+        <text class="ko t-mut" x="559" y="184" text-anchor="middle" font-size="6.5" >멱등 · 재실행 안전</text>
+        <text class="en t-mut" x="559" y="184" text-anchor="middle" font-size="6" >idempotent · safe to re-run</text>
+      </svg>
+    </div>
+    <div class="swipehint"><span class="ko">← 옆으로 밀어 다이어그램 전체 보기 →</span><span class="en">← swipe to see the full diagram →</span></div>
+  </div>
+
+  <div class="legend">
+    <div class="ko"><i>1</i><b>부적격 요청은 추론에 닿기 전에 끝난다.</b> 권한 검사를 HTTP 경계로 끌어올려 신규 기능에도 자동 적용.</div>
+    <div class="en"><i>1</i><b>Ineligible requests end before reasoning begins.</b> Permission checks lifted to the HTTP boundary, applying automatically to new features.</div>
+    <div class="ko"><i>2</i><b>자율에 코스를 준다.</b> 분류 전용 LLM이 17개 과제 중 책임 과제를 정하고 — 키워드 매칭이 아니라 의미 판단 — 루프는 그 범위 안에서만 자유. 분류가 죽어도 기본 경로로 계속(fail-open).</div>
+    <div class="en"><i>2</i><b>Autonomy gets a course.</b> A dedicated classifier LLM picks the responsible task out of 17 — semantic judgment, not keyword matching — and the loop is free only within that scope. If classification dies, the default path continues (fail-open).</div>
+    <div class="ko"><i>3</i><b>추측으로 답할 길이 없다.</b> 도구가 유일한 데이터 통로 — 근거 없이 답하면 ENFORCER가 완료로 인정하지 않는다.</div>
+    <div class="en"><i>3</i><b>No path to answer by guessing.</b> Tools are the only data path — answers without evidence are not accepted as complete by the ENFORCER.</div>
+    <div class="ko"><i>4</i><b>검색 문서도 공격자일 수 있다.</b> 문서에 심긴 명령은 데이터 경계로 감싸 무력화(spotlighting) — 2차 주입 차단.</div>
+    <div class="en"><i>4</i><b>Retrieved documents can be attackers too.</b> Commands planted in documents are neutralized inside data boundaries (spotlighting) — blocking second-order injection.</div>
+  </div>
+
+  <div class="duo">
+    <div class="mini">
+      <h4 class="ko">CACHE — 비용은 구조로 낸다</h4>
+      <h4 class="en">CACHE — PAY COSTS WITH STRUCTURE</h4>
+      <p class="ko">시스템 프롬프트를 <b>byte 단위로 동일한 정적부</b>와 턴마다 변하는 동적부로 물리 분리 — 캐시 적중이 우연이 아니라 <b>구조적으로 보장</b>되도록. 응답 지연과 토큰 비용이 함께 내려간다.</p>
+      <p class="en">The system prompt is physically split into a <b>byte-identical static part</b> and a per-turn dynamic part — so cache hits are <b>guaranteed by structure</b>, not luck. Latency and token cost fall together.</p>
+    </div>
+    <div class="mini">
+      <h4 class="ko">SCREEN CONTEXT — 화면을 아는 답변</h4>
+      <h4 class="en">SCREEN CONTEXT — ANSWERS THAT SEE THE SCREEN</h4>
+      <p class="ko">사용자가 보고 있는 화면을 근거로 주입해 <b>"왜 이 후보인가"</b> 같은 지시대명사 질문에 답한다. 화면 데이터는 <b>변경 시에만 전송·캐시</b>(비용), 사번·평가는 전 계층에서 마스킹(PII).</p>
+      <p class="en">The screen the user is looking at is injected as grounding, answering deictic questions like <b>"why this candidate?"</b> Screen data is <b>sent and cached only on change</b> (cost); employee IDs and evaluations are masked at every layer (PII).</p>
+    </div>
+  </div>
+
+  <div class="fieldnote">
+    <span class="fn ko">ORCHESTRATION — 한 턴의 LLM은 하나가 아니다</span>
+    <span class="fn en">ORCHESTRATION — ONE TURN IS NEVER ONE LLM</span>
+    <span class="ko">과제를 정하는 <b>분류기</b>, 공격을 거르는 <b>가드</b>(병렬), 도구를 고르고 답을 합성하는 <b>메인</b>(최대 12라운드) — 일부 도구는 내부에서 또 LLM을 부른다: 후보를 병렬 생성해 <b>LLM-as-judge</b>로 거르거나, 하위 에이전트를 통째로 재귀 실행한다. 라우팅조차 키워드가 아니라 모델의 판단이다.</span>
+    <span class="en">A <b>classifier</b> that picks the task, a <b>guard</b> filtering attacks (in parallel), and a <b>main</b> loop selecting tools and synthesizing answers (up to 12 rounds) — and some tools call LLMs of their own: generating candidates in parallel and filtering them with an <b>LLM-as-judge</b>, or recursively running an entire sub-agent. Even routing is the model's judgment, not keywords.</span>
+  </div>
+
+  <div class="factstrip">
+    <div><b>75,540</b>LINES OF CODE</div>
+    <div><b>26 / 17</b>TOOLS / TASK TYPES</div>
+    <div><b>1,424</b>TEST FUNCTIONS</div>
+    <div><b>6</b>SEARCH INDEXES</div>
+    <div><b><span class="ko">전사 임원</span><span class="en">EXECUTIVES</span></b>ACTIVE USERS</div>
+  </div>
+</section>
+
+<!-- ═══ P01 DECISIONS ═══ -->
+<section class="sheet" id="sh04">
+  <div class="dwgno">PROJECT 01 — DECISIONS</div>
+  <h2 class="dwgtitle ko">이 시스템을 만든 네 가지 결정</h2>
+  <h2 class="dwgtitle en">Four decisions that built this system</h2>
+  <p class="dwgsub ko">구조는 우연이 아니라 선택의 결과다. 각 결정에는 대가가 있었고, 그 대가는 사람이 아니라 시스템이 지불하도록 설계했다.</p>
+  <p class="dwgsub en">Structure is the result of choices, not chance. Every decision had a cost — designed so the system pays it, not people.</p>
+
+  <div class="dec">
+    <div class="dec-h"><span class="dec-no">DECISION 01</span><span class="dec-q ko">추론 경로를 미리 고정할 것인가</span><span class="dec-q en">Fix the reasoning path in advance?</span></div>
+    <div class="dec-opts">
+      <div class="opt"><span class="opt-tag ko">검토</span><span class="opt-tag en">CONSIDERED</span><b class="ko">고정 파이프라인 (DAG)</b><b class="en">Fixed pipeline (DAG)</b><p class="ko">예측 가능하고 디버깅이 쉽다. 그러나 질문이 경로를 벗어나는 순간 무력해진다.</p><p class="en">Predictable and easy to debug. But the moment a question leaves the path, it is helpless.</p></div>
+      <div class="opt adopted"><span class="opt-tag ko">채택</span><span class="opt-tag en">ADOPTED</span><b class="ko">자율 루프</b><b class="en">Autonomous loop</b><p class="ko">임원의 질문은 검색 결과를 봐야 다음이 정해진다 — 경로 판단은 모델의 힘을 믿고 맡겼다.</p><p class="en">An executive's next step depends on what retrieval returns — path judgment was entrusted to the model's power.</p></div>
+    </div>
+    <div class="dec-cost ko"><span class="k">COST</span>폭주와 비용 — 자율은 공짜가 아니다<span class="k">PAID BY</span>턴 상한 · 중단 처리 · 자동 재시도의 3중 방어, 프롬프트를 정적/동적으로 쪼개 캐시 적중으로 비용 상환</div>
+    <div class="dec-cost en"><span class="k">COST</span>Runaway and spend — autonomy isn't free<span class="k">PAID BY</span>triple defense of turn caps · abort handling · auto-retry; the prompt split static/dynamic so cache hits repay the cost</div>
+  </div>
+
+  <div class="dec">
+    <div class="dec-h"><span class="dec-no">DECISION 02</span><span class="dec-q ko">그 자율을 그대로 풀어둘 것인가</span><span class="dec-q en">Leave that autonomy unconstrained?</span></div>
+    <div class="dec-opts">
+      <div class="opt"><span class="opt-tag ko">기각</span><span class="opt-tag en">REJECTED</span><b class="ko">완전 자율</b><b class="en">Full autonomy</b><p class="ko">모든 도구를 열어두면 유연하지만 — 엉뚱한 경로, 불필요한 호출, 검증 불가가 함께 온다.</p><p class="en">Opening every tool is flexible — but wrong paths, wasted calls and unverifiability come with it.</p></div>
+      <div class="opt adopted"><span class="opt-tag ko">채택</span><span class="opt-tag en">ADOPTED</span><b class="ko">분류기 LLM의 제어 평면</b><b class="en">A classifier LLM as control plane</b><p class="ko">턴마다 분류 전용 LLM이 책임 과제를 정해 도구를 좁히고 절차·필수 단계를 심는다 — 루프는 그 코스 안에서만 자유.</p><p class="en">Each turn a dedicated classifier picks the responsible task, narrows the tools and plants required steps — the loop is free only within that course.</p></div>
+    </div>
+    <div class="dec-cost ko"><span class="k">COST</span>턴마다 분류 호출 1회<span class="k">PAID BY</span>공격 검출과 병렬 실행으로 지연 상쇄 — 분류가 죽어도 기본 경로로 계속(fail-open)</div>
+    <div class="dec-cost en"><span class="k">COST</span>one classification call per turn<span class="k">PAID BY</span>latency offset by running in parallel with attack detection — if classification dies, the default path continues (fail-open)</div>
+  </div>
+
+  <div class="dec">
+    <div class="dec-h"><span class="dec-no">DECISION 03</span><span class="dec-q ko">프롬프트 유출, 가릴 것인가 잡을 것인가</span><span class="dec-q en">Prompt leaks: mask them, or catch them?</span></div>
+    <div class="dec-opts">
+      <div class="opt"><span class="opt-tag ko">시도 후 폐기</span><span class="opt-tag en">TRIED &amp; DISCARDED</span><b class="ko">보호 문구를 출력에서 가리기</b><b class="en">Masking protected text in output</b><p class="ko">실제로 돌려 보니 정상 답변을 대량 오삭제 — 모델이 따라 쓰도록 준 템플릿과 원리적으로 충돌했다.</p><p class="en">Run in practice, it mass-deleted normal answers — fundamentally at odds with the very templates the model is told to follow.</p></div>
+      <div class="opt adopted"><span class="opt-tag ko">채택</span><span class="opt-tag en">ADOPTED</span><b class="ko">추측 불가 canary 트립와이어</b><b class="en">Unguessable canary tripwire</b><p class="ko">매 턴 심는 일회용 토큰이 나타나면 그때만 유출. 정상 답변 영향 0, 유출은 확정 탐지.</p><p class="en">A single-use token planted each turn appears only on a leak. Zero impact on normal answers; leaks detected with certainty.</p></div>
+    </div>
+    <div class="dec-cost ko"><span class="k">LESSON</span>탐지는 내용이 아니라 신호로 한다 — 실패한 A안의 원인 분석과 정정 이력까지 코드에 기록해 같은 실수를 봉인</div>
+    <div class="dec-cost en"><span class="k">LESSON</span>Detect by signal, not content — the failed option's root-cause analysis and correction history live in the code, sealing the mistake shut</div>
+  </div>
+
+  <div class="dec">
+    <div class="dec-h"><span class="dec-no">DECISION 04</span><span class="dec-q ko">임베딩을 컴포넌트마다 따로 호출하게 둘 것인가</span><span class="dec-q en">Let each component call embeddings on its own?</span></div>
+    <div class="dec-opts">
+      <div class="opt"><span class="opt-tag ko">검토</span><span class="opt-tag en">CONSIDERED</span><b class="ko">각자 직접 호출</b><b class="en">Direct calls everywhere</b><p class="ko">구현은 빠르다. 그러나 색인과 질의의 모델이 어긋나는 순간, 검색 품질이 소리 없이 무너진다.</p><p class="en">Fast to build. But the moment index and query models drift apart, retrieval quality collapses in silence.</p></div>
+      <div class="opt adopted"><span class="opt-tag ko">채택</span><span class="opt-tag en">ADOPTED</span><b class="ko">단일 매니저 일원화</b><b class="en">A single unified manager</b><p class="ko">색인·질의가 같은 경로를 지나므로 벡터공간 불일치가 구조적으로 불가능해진다.</p><p class="en">Indexing and querying pass through the same path, making vector-space mismatch structurally impossible.</p></div>
+    </div>
+    <div class="dec-cost ko"><span class="k">RETURN</span>모델 교체 시 수정 지점 1곳 · 자격증명 분산 제거 · 캐시와 차원 검증을 한 지점에 캡슐화</div>
+    <div class="dec-cost en"><span class="k">RETURN</span>one place to change on model swap · no scattered credentials · caching and dimension checks encapsulated at one point</div>
+  </div>
+
+  <div class="fieldnote">
+    <span class="fn ko">현장 기록 — 운영 중 검증된 순간</span>
+    <span class="fn en">FROM PRODUCTION — A MOMENT PROVEN LIVE</span>
+    <span class="ko">같은 뜻이 문서마다 다른 표기로 적혀 적격 후보가 검색에서 빠지던 <b>recall 결함</b>이 보고됐다. 수정은 중앙 코드가 아니라 <b>동의어 확장 정책 파일 하나</b> — 정책을 데이터로 분리해 둔 설계가 스스로를 증명했다.</span>
+    <span class="en">A <b>recall defect</b> was reported: the same meaning spelled differently across documents was dropping qualified candidates from search. The fix was not central code but <b>a single synonym-expansion policy file</b> — the design that keeps policy in data proved itself.</span>
+  </div>
+</section>
+
+<!-- ═══ P02 ═══ -->
+<section class="sheet" id="sh05">
+  <div class="dwgno">PROJECT 02 — CONTROLLED PIPELINE</div>
+  <h2 class="dwgtitle ko">HR 업무 통합 어시스턴트</h2>
+  <h2 class="dwgtitle en">Unified HR Assistant</h2>
+  <p class="dwgsub ko">인사 데이터 조회·분석부터 조직 편성안과 평가·목표 초안 생성까지 — HR 매니저의 <b>23개 실무를 자연어 한 줄로 받아주는 단일 창구</b>. 서로 다른 업무가 한 입구로 들어오기에, 자유가 아니라 <b>정확한 라우팅과 검증 가능성</b>이 생명이었다.</p>
+  <p class="dwgsub en">From HR data queries and analytics to org-design proposals and evaluation/goal drafts — <b>a single entry point that takes 23 HR tasks in one line of natural language</b>. With disparate work entering one door, the lifeline was <b>precise routing and verifiability</b>, not freedom.</p>
+  <div><span class="scope ko">역할 — 코어 추론 파이프라인 · 3계층 메모리 설계·구현 · 2025.07 — 2026.03</span><span class="scope en">ROLE — CORE REASONING PIPELINE · 3-LAYER MEMORY DESIGN &amp; IMPLEMENTATION · 2025.07 — 2026.03</span></div>
+
+  <div class="dec">
+    <div class="dec-h"><span class="dec-no">DECISION 05</span><span class="dec-q ko">여기서도 자율 루프인가</span><span class="dec-q en">An autonomous loop here too?</span></div>
+    <div class="dec-opts">
+      <div class="opt"><span class="opt-tag ko">기각</span><span class="opt-tag en">REJECTED</span><b class="ko">자율 루프 (프로젝트 01과 동일)</b><b class="en">Autonomous loop (as in Project 01)</b><p class="ko">23개 업무가 한 입구로 들어온다 — 엉뚱한 도구로 새면 안 되고, 편성안·평가 초안은 인사 결정으로 곧장 이어진다.</p><p class="en">23 tasks enter one door — leaks to the wrong tool are unacceptable, and org proposals and evaluation drafts feed directly into HR decisions.</p></div>
+      <div class="opt adopted"><span class="opt-tag ko">채택</span><span class="opt-tag en">ADOPTED</span><b class="ko">9노드 책임 분리 파이프라인</b><b class="en">A 9-node pipeline of separated responsibilities</b><p class="ko">단계마다 검증하고, 단계마다 격리하고, 단계마다 교체 가능하게.</p><p class="en">Verified at every stage, isolated at every stage, replaceable at every stage.</p></div>
+    </div>
+    <div class="dec-cost ko"><span class="k">NOTE</span>같은 엔지니어가 문제에 따라 정반대 구조를 선택한 기록 — 구조는 취향이 아니라 문제의 성질이 정한다 (결정 01과 대조)</div>
+    <div class="dec-cost en"><span class="k">NOTE</span>The same engineer choosing the opposite structure for a different problem — structure is set by the problem's nature, not taste (contrast with Decision 01)</div>
+  </div>
+
+  <div class="svgwrap">
+    <div class="scroller">
+      <svg class="dg" viewBox="0 0 720 96" role="img" aria-label="Hypervisor pipeline — nine nodes in order">
+        <defs><marker id="ah2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path class="t-ink" d="M0,0 L6,3 L0,6 Z" /></marker></defs>
+        <text class="ko t-fnt" x="10" y="14" font-size="6.5" letter-spacing="2">HYPERVISOR PIPELINE — 9 NODES · 이 중 7노드가 LLM-as-judge</text>
+        <text class="en t-fnt" x="10" y="14" font-size="6.5" letter-spacing="2">HYPERVISOR PIPELINE — 9 NODES · 7 OF THEM LLM-AS-JUDGE</text>
+        <g font-size="6.8" font-weight="600">
+          <rect class="s-a f-a" x="10"  y="26" width="68" height="30" stroke-width="1"/>
+          <rect class="s-a f-a" x="88"  y="26" width="68" height="30" stroke-width="1"/>
+          <rect class="s-a f-a" x="166" y="26" width="68" height="30" stroke-width="1"/>
+          <rect class="s-a f-a" x="244" y="26" width="68" height="30" stroke-width="1"/>
+          <rect class="s-a f-a" x="322" y="26" width="68" height="30" stroke-width="1"/>
+          <rect class="s-ink" x="400" y="26" width="68" height="30" fill="none" stroke-width="1" stroke-dasharray="3 2"/>
+          <rect class="s-a f-a" x="478" y="26" width="68" height="30" stroke-width="1"/>
+          <rect class="s-ink" x="556" y="26" width="68" height="30" fill="none" stroke-width="1" stroke-dasharray="3 2"/>
+          <rect class="s-a f-a" x="634" y="26" width="68" height="30" stroke-width="1"/>
+          <text class="ko t-a" x="44"  y="39" text-anchor="middle" >01 가드</text>
+          <text class="en t-a" x="44"  y="39" text-anchor="middle" font-size="6.2">01 GUARD</text>
+          <text class="ko t-a" x="122" y="39" text-anchor="middle" >02 주제전환</text>
+          <text class="en t-a" x="122" y="39" text-anchor="middle" font-size="6.2">02 TOPIC</text>
+          <text class="ko t-a" x="200" y="39" text-anchor="middle" >03 도구선택</text>
+          <text class="en t-a" x="200" y="39" text-anchor="middle" font-size="6.2">03 SELECT</text>
+          <text class="ko t-a" x="278" y="39" text-anchor="middle" >04 파라미터</text>
+          <text class="en t-a" x="278" y="39" text-anchor="middle" font-size="6.2">04 PARAMS</text>
+          <text class="ko t-a" x="356" y="39" text-anchor="middle" >05 기능검증</text>
+          <text class="en t-a" x="356" y="39" text-anchor="middle" font-size="6.2">05 VALIDATE</text>
+          <text class="ko t-ink" x="434" y="39" text-anchor="middle" >06 실행순서</text>
+          <text class="en t-ink" x="434" y="39" text-anchor="middle" font-size="6.2">06 ORDER</text>
+          <text class="ko t-a" x="512" y="39" text-anchor="middle" >07 재질문</text>
+          <text class="en t-a" x="512" y="39" text-anchor="middle" font-size="6.2">07 RE-ASK</text>
+          <text class="ko t-ink" x="590" y="39" text-anchor="middle" >08 실행</text>
+          <text class="en t-ink" x="590" y="39" text-anchor="middle" font-size="6.2">08 EXECUTE</text>
+          <text class="ko t-a" x="668" y="39" text-anchor="middle" >09 리포팅</text>
+          <text class="en t-a" x="668" y="39" text-anchor="middle" font-size="6.2">09 REPORT</text>
+          <text class="ko t-fnt" x="44"  y="49" text-anchor="middle" font-size="5.8" font-weight="400">입력 안전성</text>
+          <text class="en t-fnt" x="44"  y="49" text-anchor="middle" font-size="5.4" font-weight="400">input safety</text>
+          <text class="ko t-fnt" x="122" y="49" text-anchor="middle" font-size="5.8" font-weight="400">맥락 재판정</text>
+          <text class="en t-fnt" x="122" y="49" text-anchor="middle" font-size="5.4" font-weight="400">context re-check</text>
+          <text class="ko t-fnt" x="200" y="49" text-anchor="middle" font-size="5.8" font-weight="400">의도 → 도구</text>
+          <text class="en t-fnt" x="200" y="49" text-anchor="middle" font-size="5.4" font-weight="400">intent → tools</text>
+          <text class="ko t-fnt" x="278" y="49" text-anchor="middle" font-size="5.8" font-weight="400">병렬 추출</text>
+          <text class="en t-fnt" x="278" y="49" text-anchor="middle" font-size="5.4" font-weight="400">parallel extract</text>
+          <text class="ko t-fnt" x="356" y="49" text-anchor="middle" font-size="5.8" font-weight="400">적합성 판정</text>
+          <text class="en t-fnt" x="356" y="49" text-anchor="middle" font-size="5.4" font-weight="400">fitness check</text>
+          <text class="ko t-fnt" x="434" y="49" text-anchor="middle" font-size="5.8" font-weight="400">Kahn 위상정렬</text>
+          <text class="en t-fnt" x="434" y="49" text-anchor="middle" font-size="5.4" font-weight="400">Kahn toposort</text>
+          <text class="ko t-fnt" x="512" y="49" text-anchor="middle" font-size="5.8" font-weight="400">부족하면 되묻기</text>
+          <text class="en t-fnt" x="512" y="49" text-anchor="middle" font-size="5.4" font-weight="400">ask when short</text>
+          <text class="ko t-fnt" x="590" y="49" text-anchor="middle" font-size="5.8" font-weight="400">재시도·격리</text>
+          <text class="en t-fnt" x="590" y="49" text-anchor="middle" font-size="5.4" font-weight="400">retry · isolate</text>
+          <text class="ko t-fnt" x="668" y="49" text-anchor="middle" font-size="5.8" font-weight="400">결과 합성</text>
+          <text class="en t-fnt" x="668" y="49" text-anchor="middle" font-size="5.4" font-weight="400">synthesize</text>
+        </g>
+        <g class="s-ink" stroke-width="1">
+          <line x1="78" y1="41" x2="86" y2="41" marker-end="url(#ah2)"/><line x1="156" y1="41" x2="164" y2="41" marker-end="url(#ah2)"/>
+          <line x1="234" y1="41" x2="242" y2="41" marker-end="url(#ah2)"/><line x1="312" y1="41" x2="320" y2="41" marker-end="url(#ah2)"/>
+          <line x1="390" y1="41" x2="398" y2="41" marker-end="url(#ah2)"/><line x1="468" y1="41" x2="476" y2="41" marker-end="url(#ah2)"/>
+          <line x1="546" y1="41" x2="554" y2="41" marker-end="url(#ah2)"/><line x1="624" y1="41" x2="632" y2="41" marker-end="url(#ah2)"/>
+        </g>
+        <text class="ko t-b" x="10" y="76" font-size="6.5" >※ 판단은 LLM에게, 계산과 실행은 코드에게 — 06 실행순서(Kahn 위상정렬)·08 실행(순수 실행기) 2개 노드는 결정론</text>
+        <text class="en t-b" x="10" y="76" font-size="6.2" >※ judgment to the LLM, computation &amp; execution to code — 06 ordering (Kahn toposort) · 08 execution (pure executor) are deterministic</text>
+        <text class="ko t-mut" x="10" y="88" font-size="6.5" >병렬 3중: 메모리 3종 동시 로드 · N개 도구 파라미터 동시 추출 · 파라미터 없는 도구는 LLM 호출 자체를 생략</text>
+        <text class="en t-mut" x="10" y="88" font-size="6.2" >3-way parallelism: 3 memories loaded at once · N tool params extracted at once · tools without params skip the LLM call entirely</text>
+      </svg>
+    </div>
+    <div class="swipehint"><span class="ko">← 옆으로 밀어 다이어그램 전체 보기 →</span><span class="en">← swipe to see the full diagram →</span></div>
+  </div>
+
+  <div class="dec">
+    <div class="dec-h"><span class="dec-no">DECISION 06</span><span class="dec-q ko">실행 순서까지 LLM에게 맡길 것인가</span><span class="dec-q en">Trust the LLM with execution order too?</span></div>
+    <div class="dec-opts">
+      <div class="opt"><span class="opt-tag ko">기각</span><span class="opt-tag en">REJECTED</span><b class="ko">LLM이 순서도 판단</b><b class="en">The LLM decides order too</b><p class="ko">판단이 하나 늘 때마다 비결정성도 는다 — 순서가 틀리면 뒤의 모든 도구가 무너진다.</p><p class="en">Every added judgment adds nondeterminism — get the order wrong and every downstream tool collapses.</p></div>
+      <div class="opt adopted"><span class="opt-tag ko">채택</span><span class="opt-tag en">ADOPTED</span><b class="ko">데이터 흐름 기반 위상정렬</b><b class="en">Dataflow-based topological sort</b><p class="ko">도구 간 입출력 의존성이 순서를 이미 결정한다. 계산 가능한 것은 계산한다.</p><p class="en">I/O dependencies between tools already determine the order. What can be computed, is computed.</p></div>
+    </div>
+    <div class="dec-cost ko"><span class="k">PRINCIPLE</span>힘을 쓸 자리를 정하는 것도 설계다 — 판단이 필요한 7개 노드에만 LLM을, 순서(06)와 실행(08)은 결정론으로</div>
+    <div class="dec-cost en"><span class="k">PRINCIPLE</span>Choosing where to spend the power is design too — LLMs only at the 7 nodes that need judgment; ordering (06) and execution (08) stay deterministic</div>
+  </div>
+
+  <div class="duo">
+    <div class="mini">
+      <h4 class="ko">NONDETERMINISM — 형식을 어겨도 죽지 않게</h4>
+      <h4 class="en">NONDETERMINISM — SURVIVING BROKEN FORMAT</h4>
+      <p class="ko">모델의 힘은 판단이지 형식이 아니다 — 형식은 흔들린다는 <b>전제</b>로 지었다. 괄호 매칭·들여쓰기 추적 자체 파서가 출력을 복원하고, 실패하면 안전 기본값으로 강등 — 파이프라인은 멈추지 않는다.</p>
+      <p class="en">The model's power is judgment, not format — this was built on the <b>premise</b> that format wavers. A custom parser (bracket matching, indent tracking) recovers output; on failure it degrades to safe defaults — the pipeline never stops.</p>
+    </div>
+    <div class="mini">
+      <h4 class="ko">MEMORY — 대화를 지식으로</h4>
+      <h4 class="en">MEMORY — CONVERSATION INTO KNOWLEDGE</h4>
+      <p class="ko">자유 발화를 LLM이 <b>Triple(주어–술어–목적어)</b>로 구조화해 pgvector로 의미 검색. 단기 / 세션 지식 / 영구 프로필의 3계층 — 영구 기록은 "기억해줘" 같은 <b>명시적 의도를 먼저 판별</b>한 뒤에만 남겨 오염을 막았다.</p>
+      <p class="en">An LLM structures free-form speech into <b>Triples (subject–predicate–object)</b>, searched semantically via pgvector. Three layers — short-term / session knowledge / permanent profile — and permanent writes happen only after <b>detecting explicit intent</b> like "remember this," preventing contamination.</p>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="mini">
+      <h4 class="ko">EXECUTION — 배정은 검증을 통과해야 화면에 오른다</h4>
+      <h4 class="en">EXECUTION — PROPOSALS MUST PASS CHECKS TO REACH THE SCREEN</h4>
+      <p class="ko"><b>"한 그룹은 3~10명", "팀장 같은 조직 리더는 배정 제외"</b> — 인사 규칙을 코드로 먼저 강제하고, 그 안에서만 LLM이 배정을 제안한다. 실존 인원·중복·누락 검증(<b>2회 재시도</b>)을 통과해야 화면에 오르고, 조직 반영의 <b>마지막 확정은 사람의 '적용' 버튼</b>. 평가 점수는 고/평균/저 <b>레벨로만</b> 노출.</p>
+      <p class="en"><b>"A group is 3–10 people," "org leaders like team leads are excluded from assignment"</b> — HR rules are enforced in code first, and the LLM proposes only within them. Proposals reach the screen only after existence/duplication/omission checks (<b>2 retries</b>); the final commit is a human <b>'Apply' button</b>. Evaluation scores surface <b>only as high/average/low levels</b>.</p>
+    </div>
+    <div class="mini">
+      <h4 class="ko">DEFENSE-IN-DEPTH — 평가 데이터 4계층 방어</h4>
+      <h4 class="en">DEFENSE-IN-DEPTH — 4 LAYERS AROUND EVALUATION DATA</h4>
+      <p class="ko">"동료 OO의 평가 보여줘" 같은 우회에 대비해 ①경량 LLM이 타인 이름을 독립 추출 ②역할 기반 <b>사전 차단</b> ③본 LLM과의 <b>교차검증 — 불일치는 injection 신호</b> ④fail-safe 재질문의 4계층. 없는 기간의 데이터는 보유·누락 정보를 명시 주입해 <b>지어내지 못하게</b> 했다.</p>
+      <p class="en">Against detours like "show me my colleague's evaluation": ① a lightweight LLM independently extracts other-person names ② role-based <b>pre-blocking</b> ③ <b>cross-validation with the main LLM — mismatch is an injection signal</b> ④ fail-safe re-asking. For absent periods, held/missing data is explicitly injected so the model <b>cannot invent it</b>.</p>
+    </div>
+  </div>
+
+  <div class="fieldnote">
+    <span class="fn ko">계승 — 설계의 사후</span>
+    <span class="fn en">AFTERLIFE — WHAT THE DESIGN LEFT BEHIND</span>
+    <span class="ko">이 파이프라인과 메모리는 후속 <b>Talent AX 고도화 에이전트 개발의 레퍼런스이자 토대</b>가 됐다 — 시스템은 교체돼도 설계는 계승된다.</span>
+    <span class="en">This pipeline and memory became <b>the reference and foundation for the follow-on Talent AX advanced-agent development</b> — systems get replaced; designs are inherited.</span>
+  </div>
+
+  <div class="factstrip">
+    <div><b>~57,000</b>LINES OF CODE</div>
+    <div><b>9</b>PIPELINE NODES</div>
+    <div><b>23</b>HR TOOLS</div>
+    <div><b>3-LAYER</b>MEMORY · TRIPLE</div>
+  </div>
+</section>
+
+<!-- ═══ P03 ═══ -->
+<section class="sheet" id="sh06">
+  <div class="dwgno">PROJECT 03 — GROUNDED AUTOMATION</div>
+  <h2 class="dwgtitle ko">IT 변경관리 자동화 백엔드</h2>
+  <h2 class="dwgtitle en">IT Change-Management Automation Backend</h2>
+  <p class="dwgsub ko">IT 시스템의 변경 요청 분류부터 장애 분석까지 — 담당자의 경험에 의존하던 판단을, <b>과거 데이터를 근거로 판단하는</b> 6종 AI 기능으로 자동화했다.</p>
+  <p class="dwgsub en">From classifying change requests to incident analysis — judgment that once relied on operator experience, automated into six AI functions that <b>decide on the evidence of historical data</b>.</p>
+  <div><span class="scope ko">역할 — 6종 AI 기능 설계·구현 · 2025.04 — 2025.06 · 운영 중</span><span class="scope en">ROLE — SIX AI FUNCTIONS, DESIGN &amp; IMPLEMENTATION · 2025.04 — 2025.06 · IN PRODUCTION</span></div>
+
+  <div class="svgwrap">
+    <div class="scroller">
+      <svg class="dg" viewBox="0 0 720 96" role="img" aria-label="Common pipeline — from preprocessing to production systems">
+        <defs><marker id="ah3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path class="t-ink" d="M0,0 L6,3 L0,6 Z" /></marker></defs>
+        <text class="ko t-fnt" x="10" y="14" font-size="6.5" letter-spacing="2">COMMON PIPELINE — 6기능이 공유하는 하나의 골격</text>
+        <text class="en t-fnt" x="10" y="14" font-size="6.5" letter-spacing="2">COMMON PIPELINE — ONE SKELETON SHARED BY SIX FUNCTIONS</text>
+        <g font-size="7.2" font-weight="600">
+          <rect class="s-ink" x="10" y="26" width="88" height="34" fill="none" stroke-width="1"/>
+          <rect class="s-a f-a" x="120" y="26" width="128" height="34" stroke-width="1.2"/>
+          <rect class="s-a f-a" x="270" y="26" width="110" height="34" stroke-width="1.2"/>
+          <rect class="s-ink" x="402" y="26" width="118" height="34" fill="none" stroke-width="1"/>
+          <rect class="s-ink" x="542" y="26" width="98" height="34" fill="none" stroke-width="1"/>
+          <text class="ko t-ink" x="54" y="41" text-anchor="middle" >전처리</text>
+          <text class="en t-ink" x="54" y="41" text-anchor="middle" font-size="6.6">PREPROCESS</text>
+          <text class="ko t-fnt" x="54" y="52" text-anchor="middle" font-size="6" font-weight="400">비정형 티켓 정규화</text>
+          <text class="en t-fnt" x="54" y="52" text-anchor="middle" font-size="5.4" font-weight="400">normalize raw tickets</text>
+          <text class="ko t-a" x="184" y="41" text-anchor="middle" >RAG 검색 — 과거 사례</text>
+          <text class="en t-a" x="184" y="41" text-anchor="middle" font-size="6.8">RAG SEARCH — PAST CASES</text>
+          <text class="ko t-mut" x="184" y="52" text-anchor="middle" font-size="6" font-weight="400">k=5·10 · 근거 확보</text>
+          <text class="en t-mut" x="184" y="52" text-anchor="middle" font-size="5.6" font-weight="400">k=5·10 · gather evidence</text>
+          <text class="ko t-a" x="325" y="41" text-anchor="middle" >LLM 합성 — 판단</text>
+          <text class="en t-a" x="325" y="41" text-anchor="middle" font-size="6.8">LLM SYNTHESIS — JUDGE</text>
+          <text class="ko t-mut" x="325" y="52" text-anchor="middle" font-size="6" font-weight="400">근거 주입 · 추정 금지</text>
+          <text class="en t-mut" x="325" y="52" text-anchor="middle" font-size="5.6" font-weight="400">evidence in · no guessing</text>
+          <text class="ko t-ink" x="461" y="41" text-anchor="middle" >정형 라벨 파싱</text>
+          <text class="en t-ink" x="461" y="41" text-anchor="middle" font-size="6.8">LABEL PARSING</text>
+          <text class="ko t-fnt" x="461" y="52" text-anchor="middle" font-size="6" font-weight="400">실패 시 안전 기본값</text>
+          <text class="en t-fnt" x="461" y="52" text-anchor="middle" font-size="5.6" font-weight="400">safe defaults on failure</text>
+          <text class="ko t-ink" x="591" y="41" text-anchor="middle" >enum 정규화</text>
+          <text class="en t-ink" x="591" y="41" text-anchor="middle" font-size="6.8">ENUM NORMALIZE</text>
+          <text class="ko t-fnt" x="591" y="52" text-anchor="middle" font-size="6" font-weight="400">자유 텍스트 → 닫힌 값</text>
+          <text class="en t-fnt" x="591" y="52" text-anchor="middle" font-size="5.6" font-weight="400">free text → closed values</text>
+        </g>
+        <g class="s-ink" stroke-width="1">
+          <line x1="98" y1="43" x2="118" y2="43" marker-end="url(#ah3)"/><line x1="248" y1="43" x2="268" y2="43" marker-end="url(#ah3)"/>
+          <line x1="380" y1="43" x2="400" y2="43" marker-end="url(#ah3)"/><line x1="520" y1="43" x2="540" y2="43" marker-end="url(#ah3)"/>
+          <line x1="640" y1="43" x2="662" y2="43" marker-end="url(#ah3)"/>
+        </g>
+        <text class="ko t-ink" x="668" y="41" font-size="7" font-weight="600">운영</text>
+        <text class="en t-ink" x="666" y="41" font-size="6.6" font-weight="600">PROD</text>
+        <text class="ko t-fnt" x="666" y="51" font-size="6" >시스템</text>
+        <text class="en t-fnt" x="666" y="51" font-size="5.6" >systems</text>
+        <text class="ko t-mut" x="10" y="76" font-size="6.5" >※ 6기능 중 4기능이 RAG 근거 사용, 위험도 예측·위험명령어 감지 2종은 LLM 단독 · 전 통합 API 30초 SLA · 부분 실패는 안전 기본값으로 강등(오류로 끊기지 않음)</text>
+        <text class="en t-mut" x="10" y="76" font-size="6" >※ 4 of 6 functions use RAG evidence; risk prediction &amp; dangerous-command detection run LLM-only · all APIs on a 30s SLA · partial failures degrade to safe defaults (never break the call)</text>
+        <text class="ko t-mut" x="10" y="88" font-size="6.5" >※ 적재 시에도 유효성 검증·채널 필터로 검색 코퍼스를 큐레이션 — RAG 인덱스의 적재·삭제 수명주기까지 서비스 특성별 전략(분리/전역)으로 관리</text>
+        <text class="en t-mut" x="10" y="88" font-size="6" >※ ingestion is curated too — validity checks &amp; channel filters; the RAG index's ingest/delete lifecycle managed per service (isolated/global strategies)</text>
+      </svg>
+    </div>
+    <div class="swipehint"><span class="ko">← 옆으로 밀어 다이어그램 전체 보기 →</span><span class="en">← swipe to see the full diagram →</span></div>
+  </div>
+
+  <div class="chips">
+    <span class="chip"><b>F1</b> <span class="ko">변경요청(SOR) 분류</span><span class="en">change-request (SOR) classification</span></span>
+    <span class="chip"><b>F2</b> <span class="ko">담당자 추천</span><span class="en">assignee recommendation</span></span>
+    <span class="chip"><b>F3</b> <span class="ko">유사 작업계획 추천</span><span class="en">similar work-plan retrieval</span></span>
+    <span class="chip"><b>F4</b> <span class="ko">위험도 예측</span><span class="en">risk prediction</span></span>
+    <span class="chip"><b>F5</b> <span class="ko">유사장애 분석</span><span class="en">similar-incident analysis</span></span>
+    <span class="chip"><b>F6</b> <span class="ko">위험명령어 감지</span><span class="en">dangerous-command detection</span></span>
+  </div>
+
+  <div class="dec">
+    <div class="dec-h"><span class="dec-no">DECISION 07</span><span class="dec-q ko">사번을 LLM에게 맡길 것인가</span><span class="dec-q en">Trust the LLM with employee IDs?</span></div>
+    <div class="dec-opts">
+      <div class="opt"><span class="opt-tag ko">기각</span><span class="opt-tag en">REJECTED</span><b class="ko">LLM이 담당자를 직접 답변</b><b class="en">The LLM answers the assignee directly</b><p class="ko">존재하지 않는 사번을 그럴듯하게 지어낼 수 있다. 추천 업무에서 이것은 치명적이다.</p><p class="en">It can fabricate plausible, nonexistent employee IDs. In a recommendation task this is fatal.</p></div>
+      <div class="opt adopted"><span class="opt-tag ko">채택</span><span class="opt-tag en">ADOPTED</span><b class="ko">ID-anchored — LLM은 고르기만</b><b class="en">ID-anchored — the LLM only chooses</b><p class="ko">LLM은 가장 유사한 과거 사례의 ID만 선택. 사번은 코드가 실데이터에서 조회하고, 처리 일정은 과거 사례의 소요 기간으로 계산한다.</p><p class="en">The LLM only selects the most similar past case's ID. Code looks up the employee from real data, and the schedule is computed from the past case's lead time.</p></div>
+    </div>
+    <div class="dec-cost ko"><span class="k">PRINCIPLE</span>LLM은 고르고, 사실은 코드가 말한다 — 존재하지 않는 사람이 추천될 경로가 구조적으로 없다</div>
+    <div class="dec-cost en"><span class="k">PRINCIPLE</span>The LLM chooses; the facts are spoken by code — structurally no path for a nonexistent person to be recommended</div>
+  </div>
+
+  <div class="dec">
+    <div class="dec-h"><span class="dec-no">DECISION 08</span><span class="dec-q ko">LLM 출력을 그대로 시스템에 넣을 것인가</span><span class="dec-q en">Feed raw LLM output into the system?</span></div>
+    <div class="dec-opts">
+      <div class="opt"><span class="opt-tag ko">기각</span><span class="opt-tag en">REJECTED</span><b class="ko">JSON 스키마로 강제</b><b class="en">Enforce a JSON schema</b><p class="ko">표준적이지만 형식이 조금만 깨져도 응답 전체를 잃는다 — 긴 스키마는 토큰도 비싸다.</p><p class="en">Standard, but the slightest format break loses the whole response — and long schemas are token-expensive.</p></div>
+      <div class="opt adopted"><span class="opt-tag ko">채택</span><span class="opt-tag en">ADOPTED</span><b class="ko">줄 단위 라벨·구분자 프로토콜</b><b class="en">A line-label · delimiter protocol</b><p class="ko">분류·이유 라벨과 구분자로 받아 한 줄이 깨져도 나머지를 복원하고, 값은 정해진 enum으로만 수렴시킨다.</p><p class="en">Labels and delimiters per line: one broken line still recovers the rest, and values converge only to fixed enums.</p></div>
+    </div>
+    <div class="dec-cost ko"><span class="k">RETURN</span>형식 오류가 국소화되고 시스템에는 닫힌 값만 들어간다 — 파싱 실패조차 안전 기본값(unknown·하)으로 강등</div>
+    <div class="dec-cost en"><span class="k">RETURN</span>Format errors are localized and only closed values enter the system — even parse failure degrades to safe defaults (unknown · low)</div>
+  </div>
+
+  <div class="duo">
+    <div class="mini">
+      <h4 class="ko">SELF-VERIFICATION — 검색을 믿지 않는다</h4>
+      <h4 class="en">SELF-VERIFICATION — NEVER TRUST RETRIEVAL</h4>
+      <p class="ko">벡터 검색이 물어온 사례도 무관할 수 있다. LLM이 사례마다 <b>검증 플래그를 스스로 판정</b>하게 하고, 통과한 사례만 채택해 중복 제거 후 최신순으로 재정렬 — <b>유사도는 검색이, 시점은 코드가</b> 정한다.</p>
+      <p class="en">Even vector-retrieved cases can be irrelevant. The LLM <b>judges a verification flag per case</b>; only passing cases are adopted, deduplicated and re-sorted by recency — <b>similarity is decided by search, recency by code</b>.</p>
+    </div>
+    <div class="mini">
+      <h4 class="ko">PROMPT-AS-CONFIG — 코드에 프롬프트 0개</h4>
+      <h4 class="en">PROMPT-AS-CONFIG — ZERO PROMPTS IN CODE</h4>
+      <p class="ko">모델의 행동을 결정하는 프롬프트를 전부 코드 밖 YAML로 분리했다. 지시·출력 형식·few-shot 예시를 <b>데이터로 다루므로</b> 프롬프트 개선과 실험이 <b>코드 배포 주기에서 분리</b>된다 — AI 품질을 조정하는 손잡이가 코드가 아니라 데이터에 있다.</p>
+      <p class="en">Every prompt that determines model behavior lives outside code, in YAML. Instructions, output formats and few-shot examples are <b>handled as data</b>, so prompt improvement and experimentation are <b>decoupled from the code release cycle</b> — the knob that tunes AI quality is data, not code.</p>
+    </div>
+  </div>
+
+  <div class="factstrip">
+    <div><b>8,721</b>LINES OF CODE</div>
+    <div><b>6</b>AI FUNCTIONS</div>
+    <div><b>4</b>AI WORKFLOWS</div>
+    <div><b>0</b>SDK DIRECT CALLS</div>
+  </div>
+</section>
+
+<!-- ═══ SPEC ═══ -->
+<section class="sheet" id="sh07">
+  <div class="dwgno">TECHNICAL DATA</div>
+  <h2 class="dwgtitle ko">기술 명세</h2>
+  <h2 class="dwgtitle en">Technical Data</h2>
+
+  <div class="spectbl">
+    <div class="specrow"><div class="sk">AGENT RUNTIME</div>
+      <div class="sv ko"><b>자율 루프</b>와 <b>책임 분리 파이프라인</b> 양쪽을 설계 · tool calling 오케스트레이션(병렬 실행 · 의존성 위상정렬) · 한 턴 멀티 LLM(분류기·가드 병렬) · <b>프롬프트 캐싱 설계</b>(정적/동적 분리 · cache affinity) · 서브에이전트 fork 격리 · SSE 스트리밍</div>
+      <div class="sv en">Designed both <b>autonomous loops</b> and <b>separated-responsibility pipelines</b> · tool-calling orchestration (parallel execution · dependency toposort) · multi-LLM turns (classifier·guard in parallel) · <b>prompt-caching design</b> (static/dynamic split · cache affinity) · sub-agent fork isolation · SSE streaming</div></div>
+    <div class="specrow"><div class="sk">MEMORY &amp; CONTEXT</div>
+      <div class="sv ko"><b>컨텍스트 엔지니어링</b> — supersession(valid-time) 장기기억 · Triple(주어·술어·목적어) 구조화 기억 · pgvector 의미 회상 + RRF 재랭킹 · <b>화면 컨텍스트 grounding</b> · 대용량 결과 자동 요약</div>
+      <div class="sv en"><b>Context engineering</b> — supersession (valid-time) long-term memory · Triple (subject·predicate·object) structured memory · pgvector semantic recall + RRF re-ranking · <b>screen-context grounding</b> · auto-summarization of large results</div></div>
+    <div class="specrow"><div class="sk">RETRIEVAL</div>
+      <div class="sv ko"><b>하이브리드 검색</b>(BM25 · 벡터 · 시맨틱, RRF 융합) · 권한 필터 내장 검색(fail-closed) · 임베딩 경로 단일화(3072d 단일 매니저) · RAG-grounded 합성(추정 금지)</div>
+      <div class="sv en"><b>Hybrid search</b> (BM25 · vector · semantic, RRF fusion) · permission-filtered search (fail-closed) · unified embedding path (single 3072d manager) · RAG-grounded synthesis (no guessing)</div></div>
+    <div class="specrow"><div class="sk">TRUST &amp; SAFETY</div>
+      <div class="sv ko">프롬프트 인젝션 검출(guard LLM + 정규식 fail-over) · <b>spotlighting</b> · <b>canary 트립와이어</b> · 환각 방지 게이트(fail-closed) · <b>ID-anchored 환각 차단</b> · PII 마스킹(기억·관측 계층) · <b>LLM-as-Judge 평가 파이프라인</b> · 적대적 회귀 시나리오</div>
+      <div class="sv en">Prompt-injection detection (guard LLM + regex fail-over) · <b>spotlighting</b> · <b>canary tripwire</b> · anti-hallucination gate (fail-closed) · <b>ID-anchored hallucination blocking</b> · PII masking (memory·observability layers) · <b>LLM-as-Judge evaluation pipeline</b> · adversarial regression scenarios</div></div>
+    <div class="specrow"><div class="sk">PLATFORM &amp; OPS</div>
+      <div class="sv ko"><b>YAML-first 확장</b>(중앙 코드 변경 없이 도구·정책 추가) · 멀티테넌트 설정 분리 · AST 린트 게이트 · 부팅 drift 게이트 · 교차 서비스 계약 테스트 · <b>LLM 관측</b>(Langfuse 트레이싱 · 토큰 비용) · OpenTelemetry · 멱등 배치 · <b>폐쇄망 CI/CD 배포</b></div>
+      <div class="sv en"><b>YAML-first extension</b> (add tools/policies with no central code change) · multi-tenant config isolation · AST lint gate · boot drift gate · cross-service contract tests · <b>LLM observability</b> (Langfuse tracing · token cost) · OpenTelemetry · idempotent batches · <b>air-gapped CI/CD deployment</b></div></div>
+    <div class="specrow"><div class="sk">STACK</div>
+      <div class="sv ko">Python · FastAPI · Pydantic v2 · SQLAlchemy(async) · asyncpg · PostgreSQL · <b>pgvector</b> · Redis · <b>Azure AI Search</b> · Azure OpenAI · LangGraph(checkpointer·store) · <b>LangMem</b>(기억 추출·저장) · Docker · Kubernetes · GitHub Actions</div>
+      <div class="sv en">Python · FastAPI · Pydantic v2 · SQLAlchemy (async) · asyncpg · PostgreSQL · <b>pgvector</b> · Redis · <b>Azure AI Search</b> · Azure OpenAI · LangGraph (checkpointer·store) · <b>LangMem</b> (memory extraction·storage) · Docker · Kubernetes · GitHub Actions</div></div>
+    <div class="specrow"><div class="sk">ML FOUNDATION</div>
+      <div class="sv ko">모델 경량화·최적화(OpenVINO, PTQ) · 심층강화학습 앙상블 7종(A2C·DDPG·PPO·ACKTR·SAC·TD3·TRPO) · 자기 지도 학습(DINO ViT · 마스킹 특징 복원) · Computer Vision(YOLOv8 · 단안 깊이 추정 · 비지도 의미론적 분할) — <b>기록 섹션의 연구 [1]·[2]·[3]으로 검증</b></div>
+      <div class="sv en">Model compression &amp; optimization (OpenVINO, PTQ) · deep-RL ensemble of 7 (A2C·DDPG·PPO·ACKTR·SAC·TD3·TRPO) · self-supervised learning (DINO ViT · masked feature reconstruction) · computer vision (YOLOv8 · monocular depth estimation · unsupervised semantic segmentation) — <b>validated by studies [1]·[2]·[3] in the Record section</b></div></div>
+  </div>
+</section>
+
+<!-- ═══ REFERENCES & RECORD ═══ -->
+<section class="sheet" id="sh08">
+  <div class="dwgno">PUBLICATIONS &amp; RECORD</div>
+  <h2 class="dwgtitle ko">출판물 · 기록</h2>
+  <h2 class="dwgtitle en">Publications · Record</h2>
+
+  <div class="seclbl"><span class="ko">PUBLICATIONS — INTERNATIONAL (제1저자 · 최신순)</span><span class="en">PUBLICATIONS — INTERNATIONAL (FIRST AUTHOR · NEWEST FIRST)</span></div>
+  <div class="pub2">
+    <div class="pt">Simulating Mobile Robot Vision: An Analysis of RGB-D versus RGB-Based Distance Accuracy and CPU Optimization</div>
+    <div class="pm">[1] IEEE ICAIIC 2025 · KONG, M., PARK, J., LEE, D., KOURTZANIDIS, N., SO, J. · <a href="https://ieeexplore.ieee.org/document/10920652" target="_blank" rel="noopener">IEEE XPLORE ↗</a></div>
+    <div class="pd ko">GPU 없는 <b>CPU-only 로봇 비전</b>을 ROS로 실시간 시뮬레이션 — YOLOv8 Nano 인간 탐지에 MobileNetV2(KITTI) 단안 깊이 추정과 RGB-D 실측의 거리 정확도를 비교했다. 하드웨어 특화(OpenVINO 변환)와 하드웨어 불문(PTQ 양자화) <b>이중 최적화로 CPU 사용량 약 4.6–5.3% 절감</b> — 엣지 장비의 자원 제약을 모델 최적화로 상환하는 설계를 실증.</div>
+    <div class="pd en">Real-time <b>CPU-only robot vision</b> simulated in ROS, with no GPU — YOLOv8 Nano human detection comparing MobileNetV2 (KITTI) monocular depth against RGB-D ground truth for distance accuracy. Dual optimization — hardware-specific (OpenVINO conversion) and hardware-agnostic (PTQ quantization) — <b>cut CPU usage by ~4.6–5.3%</b>, demonstrating a design that repays edge-device resource constraints with model optimization.</div>
+  </div>
+  <div class="pub2">
+    <div class="pt">Empirical Analysis of Automated Stock Trading Using Deep Reinforcement Learning</div>
+    <div class="pm">[2] MDPI APPLIED SCIENCES 2023 (SCIE) · KONG, M., SO, J. · CITED BY 29 (GOOGLE SCHOLAR) · <a href="https://www.mdpi.com/2076-3417/13/1/633" target="_blank" rel="noopener">MDPI ↗</a></div>
+    <div class="pd ko">7종 심층강화학습 알고리즘(A2C·DDPG·PPO·ACKTR·SAC·TD3·TRPO)을 결합한 앙상블 에이전트 <b>Remake Ensemble</b>을 구축하고, Dow Jones 단일 검증에 머물던 기존 연구를 KOSPI·JPX까지 넓혀 <b>에이전트당 5회 반복 실험</b>으로 실증했다. <b>알고리즘 수보다 시장별 액션(전략) 설계가 수익 안정성을 좌우</b>함을 규명 — 보수적 전략 전환으로 KOSPI·JPX 성능 개선을 확인. 화려한 주장 대신 실험으로 경계를 확정하는 검증 태도의 출발점.</div>
+    <div class="pd en">Built <b>Remake Ensemble</b>, an ensemble agent combining seven deep-RL algorithms (A2C·DDPG·PPO·ACKTR·SAC·TD3·TRPO), and extended validation beyond the usual Dow-Jones-only setting to KOSPI and JPX with <b>five repeated runs per agent</b>. Showed that <b>per-market action (strategy) design drives return stability more than the number of algorithms</b> — a conservative strategy switch improved KOSPI/JPX performance. The starting point of a habit of fixing boundaries by experiment rather than claims.</div>
+  </div>
+  <div class="seclbl"><span class="ko">PUBLICATIONS — M.S. THESIS (석사 학위논문)</span><span class="en">PUBLICATIONS — M.S. THESIS</span></div>
+  <div class="pub2">
+    <div class="pt">Unsupervised Semantic Segmentation Leveraging Masking-Based Feature Reconstruction</div>
+    <div class="pm"><span class="ko">[3] 서강대학교 대학원 2024.06 · KONG, M. (지도: Prof. Jungmin So)</span><span class="en">[3] SOGANG UNIVERSITY GRADUATE SCHOOL 2024.06 · KONG, M. (ADVISOR: PROF. JUNGMIN SO)</span></div>
+    <div class="pd ko">MAE의 마스킹 복원 아이디어를 이미지가 아닌 <b>특징(feature) 레벨로 확장한 RMF(Reconstructing Masked Feature)</b> 제안 — DINO(ViT) 특징의 50%를 패치 단위로 마스킹하고 복원하도록 세그멘테이션 헤드를 학습시켜, 레이블 없이 픽셀을 의미 단위로 분할한다. 마스킹 비율 3종·방식 4종 ablation으로 설계값을 실증 선택했고, CocoStuff·Cityscapes에서 DINO 베이스라인 대비 <b>비지도 픽셀 정확도 최대 +23.8%p · mIoU 최대 +5.1%p</b> — 3개 트랜스포머 백본(ViT-S/8·S/16·B/8) 전반의 일관 향상을 검증.</div>
+    <div class="pd en">Proposed <b>RMF (Reconstructing Masked Feature)</b>, extending MAE's masked-reconstruction idea from images to the <b>feature level</b> — a segmentation head learns to reconstruct 50% patch-masked DINO (ViT) features, segmenting pixels semantically without labels. Design values chosen empirically by ablation over 3 masking ratios × 4 schemes; on CocoStuff and Cityscapes, <b>up to +23.8%p unsupervised pixel accuracy and +5.1%p mIoU</b> over the DINO baseline — consistent gains across three transformer backbones (ViT-S/8·S/16·B/8).</div>
+  </div>
+
+  <div class="seclbl">RECORD — CAREER &amp; EDUCATION</div>
+  <div class="recrow"><span class="l"><span class="ko">SK 주식회사 AX</span><span class="en">SK Inc. AX</span><span class="d">AI Application Engineer</span></span><span class="r">2025.01 — PRESENT</span></div>
+  <div class="recrow"><span class="l"><span class="ko">서강대학교</span><span class="en">Sogang University</span><span class="d">M.S. Computer Science &amp; Engineering — Major in Applied Big Data Engineering (Prof. Jungmin So)</span></span><span class="r">2022.02 — 2024.08</span></div>
+  <div class="recrow"><span class="l">University of Toronto<span class="d">Applied Science &amp; Engineering — IITP Applied AI Program</span></span><span class="r">2024.01 — 2024.06</span></div>
+  <div class="recrow"><span class="l"><span class="ko">서강대학교</span><span class="en">Sogang University</span><span class="d">B.S. Economics · Bigdata Science</span></span><span class="r">2014.02 — 2022.02</span></div>
+
+  <div class="seclbl">RECORD — CERTIFICATION &amp; LANGUAGE</div>
+  <div class="recrow"><span class="l"><span class="ko">빅데이터분석기사</span><span class="en">Certified Big Data Analysis Engineer</span><span class="d ko">국가기술자격 — 과학기술정보통신부·통계청 (한국데이터산업진흥원)</span><span class="d en">Korean national technical qualification — MSIT · Statistics Korea (K-DATA)</span></span><span class="r">2024.12</span></div>
+  <div class="recrow"><span class="l">OPIc English — AL (Advanced Low)<span class="d ko">ACTFL 공인 말하기 평가</span><span class="d en">ACTFL-certified speaking assessment</span></span><span class="r">2024.09 — 2026.08</span></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-left">
+      <p class="ft-motto">&ldquo;Models are power; decisions are direction.&rdquo;</p>
+      <p class="ft-links">
+        <a href="assets/portfolio.pdf" download="공민석_AI_Application_Engineer_Portfolio.pdf"><span class="ko">PDF 포트폴리오 ↓</span><span class="en">PORTFOLIO PDF ↓</span></a> ·
+        <a href="https://github.com/kongminseok" target="_blank" rel="noopener">GITHUB ↗</a> ·
+        <a href="https://www.linkedin.com/in/minseokkong/" target="_blank" rel="noopener">LINKEDIN ↗</a>
+      </p>
+      <p class="ft-copy">© 2026 MINSEOK KONG</p>
+    </div>
+    <div class="signbox">
+      <div class="sl">CONTACT</div>
+      <div class="sn"><span class="ko">공민석</span><span class="en">Minseok Kong</span> <a href="mailto:ksjscott@naver.com">ksjscott@naver.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches || root.hasAttribute('data-nofx');
+
+  /* ---------- language toggle ---------- */
+  var TITLES = {
+    ko: '공민석 — AI Application Engineer',
+    en: 'Minseok Kong — AI Application Engineer'
+  };
+  var DESCS = {
+    ko: '모델은 힘이고, 결정은 방향이다 — AI Application Engineer 공민석. 세 AI 서비스의 아키텍처와 결정의 기록.',
+    en: 'Models are power; decisions are direction — Minseok Kong, AI Application Engineer. The architecture and decisions of three AI services.'
+  };
+  var btns = [].slice.call(document.querySelectorAll('[data-lang-btn]'));
+  function applyLang(l){
+    root.setAttribute('data-lang', l);
+    root.lang = l;
+    document.title = TITLES[l];
+    var md = document.querySelector('meta[name="description"]');
+    if(md) md.setAttribute('content', DESCS[l]);
+    btns.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.langBtn === l)); });
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  applyLang(root.getAttribute('data-lang') || 'ko');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var l = b.dataset.langBtn;
+      if(l === root.getAttribute('data-lang')) return;
+      if(reduced){ applyLang(l); return; }
+      document.body.classList.add('langfade');
+      setTimeout(function(){
+        applyLang(l);
+        requestAnimationFrame(function(){ document.body.classList.remove('langfade'); });
+      }, 180);
+    });
+  });
+
+  /* ---------- theme toggle ---------- */
+  var THEME_COLORS = { light: '#fbfbfa', dark: '#0d1016' };
+  var themeMetas = [].slice.call(document.querySelectorAll('meta[name="theme-color"]'));
+  function paintThemeMeta(t){
+    themeMetas.forEach(function(m){ m.setAttribute('content', THEME_COLORS[t]); });
+  }
+  function applyTheme(t, explicit){
+    root.setAttribute('data-theme', t);
+    paintThemeMeta(t);
+    if(explicit){
+      try{ localStorage.setItem('theme', t); }catch(e){}
+    }
+  }
+  paintThemeMeta(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+  var themeBtn = document.getElementById('themesw');
+  if(themeBtn){
+    themeBtn.addEventListener('click', function(){
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      if(reduced){ applyTheme(next, true); return; }
+      document.body.classList.add('langfade');
+      setTimeout(function(){
+        applyTheme(next, true);
+        requestAnimationFrame(function(){ document.body.classList.remove('langfade'); });
+      }, 180);
+    });
+  }
+  /* ---------- scroll progress ---------- */
+  var bar = document.getElementById('pbar'), ticking = false;
+  function paint(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+    ticking = false;
+  }
+  addEventListener('scroll', function(){ if(!ticking){ requestAnimationFrame(paint); ticking = true; } }, {passive:true});
+  paint();
+
+  /* ---------- to-top button ---------- */
+  var top = document.getElementById('totop');
+  addEventListener('scroll', function(){
+    top.classList.toggle('show', document.documentElement.scrollTop > 700);
+  }, {passive:true});
+  top.addEventListener('click', function(){ scrollTo({top:0, behavior: reduced ? 'auto' : 'smooth'}); });
+
+  /* ---------- scroll-spy ---------- */
+  var links = [].slice.call(document.querySelectorAll('.nav nav a'));
+  var map = {};
+  links.forEach(function(a){ (a.dataset.sec || '').split(' ').forEach(function(id){ if(id) map[id] = a; }); });
+  if('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting && map[e.target.id]){
+          links.forEach(function(a){ a.classList.remove('on'); });
+          map[e.target.id].classList.add('on');
+        }
+      });
+    }, {rootMargin:'-30% 0px -60% 0px'});
+    Object.keys(map).forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) spy.observe(el);
+    });
+    var cover = document.getElementById('top');
+    var coverSpy = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting) links.forEach(function(a){ a.classList.remove('on'); }); });
+    }, {rootMargin:'-30% 0px -60% 0px'});
+    coverSpy.observe(cover);
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  if(!reduced && 'IntersectionObserver' in window){
+    var blocks = document.querySelectorAll('.sheet > *');
+    var rev = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0});
+    blocks.forEach(function(b){ b.classList.add('rv'); rev.observe(b); });
+  }
+})();
+</script>
+</body>
+</html>
