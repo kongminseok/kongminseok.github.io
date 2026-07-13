@@ -1166,17 +1166,30 @@ footer::after{content:"";position:absolute;right:-70px;top:-90px;width:280px;hei
 })();
 </script>
 <script>
-/* visitor counter — counts only on the live domain, stays hidden if unreachable */
+/* GoatCounter analytics + unique-visitor counter — live domain only, hidden if unreachable */
 (function(){
   if(location.hostname !== 'kongminseok.github.io') return;
-  fetch('https://hitscounter.dev/api/hit?url=https%3A%2F%2Fkongminseok.github.io&tz=Asia%2FSeoul&output=json')
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      document.getElementById('hitsToday').textContent = Number(d.today_hits).toLocaleString('en-US');
-      document.getElementById('hitsTotal').textContent = Number(d.total_hits).toLocaleString('en-US');
+  var s = document.createElement('script');
+  s.async = true; s.src = 'https://gc.zgo.at/count.js';
+  s.setAttribute('data-goatcounter', 'https://kongminseok.goatcounter.com/count');
+  document.body.appendChild(s);
+
+  function put(id, v){
+    var n = Number(String(v).replace(/[^0-9]/g, '')) || 0;
+    document.getElementById(id).textContent = n.toLocaleString('en-US');
+  }
+  setTimeout(function(){
+    var base = 'https://kongminseok.goatcounter.com/counter/' + encodeURIComponent(location.pathname) + '.json';
+    var today = new Intl.DateTimeFormat('en-CA', {timeZone: 'Asia/Seoul'}).format(new Date());
+    Promise.all([
+      fetch(base).then(function(r){ return r.json(); }),
+      fetch(base + '?start=' + today).then(function(r){ return r.json(); })
+    ]).then(function(d){
+      put('hitsTotal', d[0].count);
+      put('hitsToday', d[1].count);
       document.getElementById('ftHits').hidden = false;
-    })
-    .catch(function(){});
+    }).catch(function(){});
+  }, 1200);
 })();
 </script>
 </body>
