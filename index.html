@@ -1036,7 +1036,7 @@ footer::after{content:"";position:absolute;right:-70px;top:-90px;width:280px;hei
         <a href="https://github.com/kongminseok" target="_blank" rel="noopener">GITHUB ↗</a> ·
         <a href="https://www.linkedin.com/in/minseokkong/" target="_blank" rel="noopener">LINKEDIN ↗</a>
       </p>
-      <p class="ft-copy">© 2026 MINSEOK KONG</p>
+      <p class="ft-copy">© 2026 MINSEOK KONG<span id="ftHits" hidden> · TODAY <span id="hitsToday"></span> · TOTAL <span id="hitsTotal"></span></span></p>
     </div>
     <div class="signbox">
       <div class="sl">CONTACT</div>
@@ -1163,6 +1163,20 @@ footer::after{content:"";position:absolute;right:-70px;top:-90px;width:280px;hei
     }, {rootMargin:'0px 0px -8% 0px', threshold:0});
     blocks.forEach(function(b){ b.classList.add('rv'); rev.observe(b); });
   }
+})();
+</script>
+<script>
+/* visitor counter — counts only on the live domain, stays hidden if unreachable */
+(function(){
+  if(location.hostname !== 'kongminseok.github.io') return;
+  fetch('https://hitscounter.dev/api/hit?url=https%3A%2F%2Fkongminseok.github.io&tz=Asia%2FSeoul&output=json')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      document.getElementById('hitsToday').textContent = Number(d.today_hits).toLocaleString('en-US');
+      document.getElementById('hitsTotal').textContent = Number(d.total_hits).toLocaleString('en-US');
+      document.getElementById('ftHits').hidden = false;
+    })
+    .catch(function(){});
 })();
 </script>
 </body>
